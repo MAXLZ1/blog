@@ -12,9 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install And Build
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.1
+        with:
+          node-version: "17.8.0"
+
+      - name: Install
         run: npm install
-            npm run docs:build
+
+      - name: Build
+        run: npm run docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
