@@ -6,7 +6,7 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     docsDir: 'docs',
-    lastUpdated: 'Last Updated',
+    lastUpdated: '上次更新',
     sidebar: [
       {
         text: 'Vue3源码解析',
@@ -17,5 +17,8 @@ export default defineConfig({
         ]
       },
     ]
-  }
+  },
+  markdown: {
+    lineNumbers: true
+  },
 })
