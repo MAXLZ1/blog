@@ -27,6 +27,9 @@ const observed2 = reactive(a)
 console.log(freezeObj === observed2) // true
 ```
 
+`reactive`流程图：
+![reactive流程](../images/reactive.png)
+
 `reactive`源码，文件位置：`packages/reactivity/src/reactive.ts`
 ```ts 
 export function reactive(target: object) {
@@ -392,3 +395,173 @@ function ownKeys(target: object): (string | symbol)[] {
 ```
 
 ### `mutableCollectionHandlers`
+
+文件位置：`packages/reactivity/src/collectionHandlers.ts`
+
+```ts
+function createInstrumentations() {
+  const mutableInstrumentations: Record<string, Function> = {
+    get(this: MapTypes, key: unknown) {
+      return get(this, key)
+    },
+    get size() {
+      return size(this as unknown as IterableCollections)
+    },
+    has,
+    add,
+    set,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, false)
+  }
+
+  const shallowInstrumentations: Record<string, Function> = {
+    get(this: MapTypes, key: unknown) {
+      return get(this, key, false, true)
+    },
+    get size() {
+      return size(this as unknown as IterableCollections)
+    },
+    has,
+    add,
+    set,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, true)
+  }
+
+  const readonlyInstrumentations: Record<string, Function> = {
+    get(this: MapTypes, key: unknown) {
+      return get(this, key, true)
+    },
+    get size() {
+      return size(this as unknown as IterableCollections, true)
+    },
+    has(this: MapTypes, key: unknown) {
+      return has.call(this, key, true)
+    },
+    add: createReadonlyMethod(TriggerOpTypes.ADD),
+    set: createReadonlyMethod(TriggerOpTypes.SET),
+    delete: createReadonlyMethod(TriggerOpTypes.DELETE),
+    clear: createReadonlyMethod(TriggerOpTypes.CLEAR),
+    forEach: createForEach(true, false)
+  }
+
+  const shallowReadonlyInstrumentations: Record<string, Function> = {
+    get(this: MapTypes, key: unknown) {
+      return get(this, key, true, true)
+    },
+    get size() {
+      return size(this as unknown as IterableCollections, true)
+    },
+    has(this: MapTypes, key: unknown) {
+      return has.call(this, key, true)
+    },
+    add: createReadonlyMethod(TriggerOpTypes.ADD),
+    set: createReadonlyMethod(TriggerOpTypes.SET),
+    delete: createReadonlyMethod(TriggerOpTypes.DELETE),
+    clear: createReadonlyMethod(TriggerOpTypes.CLEAR),
+    forEach: createForEach(true, true)
+  }
+
+  const iteratorMethods = ['keys', 'values', 'entries', Symbol.iterator]
+  iteratorMethods.forEach(method => {
+    mutableInstrumentations[method as string] = createIterableMethod(
+      method,
+      false,
+      false
+    )
+    readonlyInstrumentations[method as string] = createIterableMethod(
+      method,
+      true,
+      false
+    )
+    shallowInstrumentations[method as string] = createIterableMethod(
+      method,
+      false,
+      true
+    )
+    shallowReadonlyInstrumentations[method as string] = createIterableMethod(
+      method,
+      true,
+      true
+    )
+  })
+
+  return [
+    mutableInstrumentations,
+    readonlyInstrumentations,
+    shallowInstrumentations,
+    shallowReadonlyInstrumentations
+  ]
+}
+
+const [
+  mutableInstrumentations,
+  readonlyInstrumentations,
+  shallowInstrumentations,
+  shallowReadonlyInstrumentations
+] = /* #__PURE__*/ createInstrumentations()
+
+function createInstrumentationGetter(isReadonly: boolean, shallow: boolean) {
+  const instrumentations = shallow
+    ? isReadonly
+      ? shallowReadonlyInstrumentations
+      : shallowInstrumentations
+    : isReadonly
+      ? readonlyInstrumentations
+      : mutableInstrumentations
+
+  return (
+    target: CollectionTypes,
+    key: string | symbol,
+    receiver: CollectionTypes
+  ) => {
+    if (key === ReactiveFlags.IS_REACTIVE) {
+      return !isReadonly
+    } else if (key === ReactiveFlags.IS_READONLY) {
+      return isReadonly
+    } else if (key === ReactiveFlags.RAW) {
+      return target
+    }
+
+    return Reflect.get(
+      hasOwn(instrumentations, key) && key in target
+        ? instrumentations
+        : target,
+      key,
+      receiver
+    )
+  }
+}
+
+export const mutableCollectionHandlers: ProxyHandler<CollectionTypes> = {
+  get: /*#__PURE__*/ createInstrumentationGetter(false, false)
+}
+```
+
+对于`Map`、`Set`、`WeakMap`、`WeakSet`只需要拦截其`get`方法，因为这些集合的增删改查等操作都是通过`api`完成的。如
+`set.add`、`map.set`、`waekMap.delete`等方法，都会触发`proxy`的`get`拦截。
+
+:::warning
+如果向`Map`、`Set`、`WeakMap`、`WeakSet`实例中添加一些自定义属性，那么这些自定义的属性不会被跟踪。
+```ts
+const set = reactive(new Set())
+let dummy
+effect(() => {
+  dummy = set.customProp
+})
+console.log(dummy) // undefined
+set.customProp = 'Hello'
+console.log(dummy) // undefined
+```
+
+因为在`get`拦截器中返回的结果是`Reflect.get(hasOwn(instrumentations, key) && key in target ? instrumentations: target, key, receiver)`，
+首先检查`key`是`instrumentations`的属性，并且存在于`target`中。如果符合条件，进入对应的方法中，进行追踪，如果否的话直接取`target`的`key`值，不会继
+续追踪下去。 用户自定义的属性显然是在`instrumentations`不存在的，所以会直接返回对应的值。
+:::
+
+在`get`拦截器中使用`createInstrumentations`创建的`mutableInstrumentations`（相当于将`add`、`push`等方法进行重写），
+以便能够进行依赖的收集和触发依赖操作。其中`get`、`size`、`has`、`forEach`、`keys`、`values`、`entries`方法会进行依赖的收集；
+`add`、`set`、`delete`、`clear`会触发依赖
+
