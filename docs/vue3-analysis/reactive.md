@@ -1,6 +1,8 @@
 # reactive
 ::: tip
 `reactive`所在模块为响应式模块`reactivity`
+
+文件位置：`packages/reactivity/src/reactive.ts`
 :::
 
 ::: info

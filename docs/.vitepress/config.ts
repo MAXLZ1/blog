@@ -24,7 +24,9 @@ export default defineConfig({
     repo: 'MAXLZ1',
     repoLabel: 'My Github',
     editLinks: true,
+    docsRepo: 'MAXLZ1/blog',
     docsDir: 'docs',
+    docsBranch: 'main',
     editLinkText: "贡献此文档",
     lastUpdated: '上次更新',
     nav: [
