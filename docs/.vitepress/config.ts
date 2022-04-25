@@ -49,6 +49,7 @@ export default defineConfig({
               { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
               { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
               { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
+              { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
             ]
           },
           {
