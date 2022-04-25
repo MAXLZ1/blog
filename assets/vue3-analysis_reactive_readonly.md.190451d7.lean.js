@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as p}from"./app.5e62a23d.js";const m='{"title":"readonly","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/reactive/readonly.md","lastUpdated":1650871123000}',t={},e=p("",13),o=[e];function c(l,u,r,i,k,b){return a(),s("div",null,o)}var y=n(t,[["render",c]]);export{m as __pageData,y as default};
