@@ -38,9 +38,7 @@ export function shallowReactive<T extends object>(
 
 `shallowReactive`与`reactive`类似，只不过在`new Proxy()`时使用的`handler`不一样，使用的缓存对象也不一样。
 
-`shallowReactive`中的`proxy handler`使用的是`shallowReactiveHandlers`和`shallowCollectionHandlers`。
-`shallowReactiveHandlers`中在生成`get`、`set`函数时传入的`shallow`为`true`。`shallowCollectionHandlers`在生成
-`get`函数时传入的`shallow`为`true`。
+`shallowReactive`中的`proxy handler`使用的是`shallowReactiveHandlers`和`shallowCollectionHandlers`。`shallowReactiveHandlers`中在生成`get`、`set`函数时传入的`shallow`为`true`。`shallowCollectionHandlers`在生成`get`函数时传入的`shallow`为`true`。
 
 ```ts
 // isReadonly: false; shallow: true;

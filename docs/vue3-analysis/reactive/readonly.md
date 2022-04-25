@@ -31,8 +31,7 @@ export function readonly<T extends object>(
 }
 ```
 
-`readonly`同样使用`createReactiveObject`创建一个代理对象，流程与`reactive`相同。与`reactive`不同的是`createReactiveObject`
-中传入的`isReadonly`为`true`，`new proxy`时的`handler`也不同。
+`readonly`同样使用`createReactiveObject`创建一个代理对象，流程与`reactive`相同。与`reactive`不同的是`createReactiveObject`中传入的`isReadonly`为`true`，`new proxy`时的`handler`也不同。
 
 `baseHandlers.ts`
 ```ts
@@ -59,8 +58,7 @@ export const readonlyHandlers: ProxyHandler<object> = {
 }
 ```
 
-从`readonlyHandlers`中可以看到，`set`和`deleteProperty`中是没有额外操作的，这也就意味着`readonly(target)`的属性是只读的，允许
-修改和删除
+从`readonlyHandlers`中可以看到，`set`和`deleteProperty`中是没有额外操作的，这也就意味着`readonly(target)`的属性是只读的，不允许修改和删除
 
 `collectionHandlers.ts`
 ```ts

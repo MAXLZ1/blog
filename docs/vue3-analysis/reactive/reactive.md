@@ -10,8 +10,7 @@
 :::
 
 ::: warning
-注意如果`reactive`的`object`，指定了`__v_skip:true`属性（`markRaw(target)`就是通过这种方法指定`target`
-永远不能转为`proxy`）或`object`本身不可被扩展，那么`object`不能被代理
+注意如果`reactive`的`object`，指定了`__v_skip:true`属性（`markRaw(target)`就是通过这种方法指定`target`永远不能转为`proxy`）或`object`本身不可被扩展，那么`object`不能被代理
 :::
 
 ```ts
@@ -93,14 +92,11 @@ function createReactiveObject(
 }
 ```
 
-`reactive`接收一个`target`对象。首先会对`target`进行判断，如果`target`是个只读的代理对象，直接将其返回。再检查`target`是不是`object`，
-如果不是`object`，返回`target`。也就是说，`reactive`只有接收对象才会对其进行代理。
+`reactive`接收一个`target`对象。首先会对`target`进行判断，如果`target`是个只读的代理对象，直接将其返回。再检查`target`是不是`object`，如果不是`object`，返回`target`。也就是说，`reactive`只有接收对象才会对其进行代理。
 
-在进行代理之前，会先尝试从缓存（`proxyMap`一个`WeakMap`实例）中获取代理对象，如果缓存中有，直接返回缓存中的代理对象，没有再继续判断
-`target`的类型，通过`target`的类型判断`target`是不是可以被代理。
+在进行代理之前，会先尝试从缓存（`proxyMap`一个`WeakMap`实例）中获取代理对象，如果缓存中有，直接返回缓存中的代理对象，没有再继续判断`target`的类型，通过`target`的类型判断`target`是不是可以被代理。
 
-通过`getTargetType`判断`target`的类型。`getTargetType`可能有三种返回结果：`TargetType.INVALID`、`TargetType.COMMON`、
-`TargetType.COLLECTION`
+通过`getTargetType`判断`target`的类型。`getTargetType`可能有三种返回结果：`TargetType.INVALID`、`TargetType.COMMON`、`TargetType.COLLECTION`
 
 - `TargetType.INVALID`：代表`target`不能被代理
 - `TargetType.COMMON`：代表`target`是`Array`或`Object`
@@ -150,9 +146,7 @@ function getTargetType(value: Target) {
 }
 ```
 
-当类型校验通过后，就可以使用`Proxy`去代理`target`了。当`new Proxy(target, handler)`时，这里的`handler`有两种：
-一种是针对`Object`、`Array`的`mutableHandlers`，一种是针对集合（`Set`、`Map`、`WeakMap`、`WeakSet`）的
-`mutableCollectionHandlers`
+当类型校验通过后，就可以使用`Proxy`去代理`target`了。当`new Proxy(target, handler)`时，这里的`handler`有两种：一种是针对`Object`、`Array`的`mutableHandlers`，一种是针对集合（`Set`、`Map`、`WeakMap`、`WeakSet`）的`mutableCollectionHandlers`
 
 ### `mutableHandlers`
 文件位置：`packages/reactivity/src/baseHandlers.ts`
@@ -166,18 +160,11 @@ export const mutableHandlers: ProxyHandler<object> = {
 }
 ```
 
-可以看到`mutableHandlers`有`get`、`set`、`deleteProperty`、`has`、`ownKeys`五个属性，分别拦截了`proxy.attr`、
-`proxy.attr = 1`、`delete proxy.attr`、`key in proxy`、(`for...in`/`Object.getOwnPropertyNames(proxy)`/
-`Object.getOwnPropertySymbols(proxy)`/`Object.keys(proxy)`)操作。
+可以看到`mutableHandlers`有`get`、`set`、`deleteProperty`、`has`、`ownKeys`五个属性，分别拦截了`proxy.attr`、`proxy.attr = 1`、`delete proxy.attr`、`key in proxy`、(`for...in`/`Object.getOwnPropertyNames(proxy)`/`Object.getOwnPropertySymbols(proxy)`/`Object.keys(proxy)`)操作。
 
-- `get`：通过`createGetter`创建一个`get`函数，`createGetter`方法接收两个参数：`isReadonly`是否只读、`shallow`是否浅层的响应式。
-在`get`函数中会进行依赖的收集以及嵌套响应式数据的处理等操作。
+- `get`：通过`createGetter`创建一个`get`函数，`createGetter`方法接收两个参数：`isReadonly`是否只读、`shallow`是否浅层的响应式。在`get`函数中会进行依赖的收集以及嵌套响应式数据的处理等操作。
 
-首先判断`key`值是不是`vue`添加的一些属性，如`__v_isReactive`、`__v_isReadonly`等，如果是这些属性，不需要其他操作直接返回对应值即可。
-然后检测拦截的`target`是不是数组，对数组的一些方法进行特殊处理。紧接着调用`Reflect.get`获得`res`，判断如果`key`
-是`Symbol`的内置值或者`key`不需要被追踪，直接返回`res`。相反紧接着下面的操作：如果不是只读，进行依赖的收集，收集完依赖后，判断
-是不是浅层响应式，如果是直接返回`res`，如果不是，再看`res`是不是`ref`类型，如果是`ref`，尝试解包并返回结果，如果不是，紧接着判断
-`res`是不是对象，如果是对象的话，就需要对其进行响应式处理。
+首先判断`key`值是不是`vue`添加的一些属性，如`__v_isReactive`、`__v_isReadonly`等，如果是这些属性，不需要其他操作直接返回对应值即可。然后检测拦截的`target`是不是数组，对数组的一些方法进行特殊处理。紧接着调用`Reflect.get`获得`res`，判断如果`key`是`Symbol`的内置值或者`key`不需要被追踪，直接返回`res`。相反紧接着下面的操作：如果不是只读，进行依赖的收集，收集完依赖后，判断是不是浅层响应式，如果是直接返回`res`，如果不是，再看`res`是不是`ref`类型，如果是`ref`，尝试解包并返回结果，如果不是，紧接着判断`res`是不是对象，如果是对象的话，就需要对其进行响应式处理。
 
 **为什么单独处理`target`是数组？**
 
@@ -542,8 +529,7 @@ export const mutableCollectionHandlers: ProxyHandler<CollectionTypes> = {
 }
 ```
 
-对于`Map`、`Set`、`WeakMap`、`WeakSet`只需要拦截其`get`方法，因为这些集合的增删改查等操作都是通过`api`完成的。如
-`set.add`、`map.set`、`waekMap.delete`等方法，都会触发`proxy`的`get`拦截。
+对于`Map`、`Set`、`WeakMap`、`WeakSet`只需要拦截其`get`方法，因为这些集合的增删改查等操作都是通过`api`完成的。如`set.add`、`map.set`、`waekMap.delete`等方法，都会触发`proxy`的`get`拦截。
 
 :::warning
 如果向`Map`、`Set`、`WeakMap`、`WeakSet`实例中添加一些自定义属性，那么这些自定义的属性不会被跟踪。
@@ -558,11 +544,7 @@ set.customProp = 'Hello'
 console.log(dummy) // undefined
 ```
 
-因为在`get`拦截器中返回的结果是`Reflect.get(hasOwn(instrumentations, key) && key in target ? instrumentations: target, key, receiver)`，
-首先检查`key`是`instrumentations`的属性，并且存在于`target`中。如果符合条件，进入对应的方法中，进行追踪，如果否的话直接取`target`的`key`值，不会继
-续追踪下去。 用户自定义的属性显然是在`instrumentations`不存在的，所以会直接返回对应的值。
+因为在`get`拦截器中返回的结果是`Reflect.get(hasOwn(instrumentations, key) && key in target ? instrumentations: target, key, receiver)`，首先检查`key`是`instrumentations`的属性，并且存在于`target`中。如果符合条件，进入对应的方法中，进行追踪，如果否的话直接取`target`的`key`值，不会继续追踪下去。 用户自定义的属性显然是在`instrumentations`不存在的，所以会直接返回对应的值。
 :::
 
-在`get`拦截器中使用`createInstrumentations`创建的`mutableInstrumentations`（相当于将`add`、`push`等方法进行重写），
-以便能够进行依赖的收集和触发依赖操作。其中`get`、`size`、`has`、`forEach`、`keys`、`values`、`entries`方法会进行依赖的收集；
-`add`、`set`、`delete`、`clear`会触发依赖
+在`get`拦截器中使用`createInstrumentations`创建的`mutableInstrumentations`（相当于将`add`、`push`等方法进行重写），以便能够进行依赖的收集和触发依赖操作。其中`get`、`size`、`has`、`forEach`、`keys`、`values`、`entries`方法会进行依赖的收集；`add`、`set`、`delete`、`clear`会触发依赖
