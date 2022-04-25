@@ -42,8 +42,19 @@ export default defineConfig({
         text: 'Vue3源码解析',
         children: [
           { text: '源码目录结构', link: '/vue3-analysis/structure' },
-          { text: 'reactive', link: '/vue3-analysis/reactive' },
-          { text: 'ref', link: '/vue3-analysis/ref' },
+          {
+            text: 'reactive',
+            children: [
+              { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
+              { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' }
+            ]
+          },
+          {
+            text: 'refs',
+            children: [
+              { text: 'ref',  link: '/vue3-analysis/refs/ref' }
+            ]
+          },
         ]
       },
     ]

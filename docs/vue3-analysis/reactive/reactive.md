@@ -30,7 +30,7 @@ console.log(freezeObj === observed2) // true
 ```
 
 `reactive`流程图：
-![reactive流程](../images/reactive.png)
+![reactive流程](../../images/reactive.png)
 
 `reactive`源码，文件位置：`packages/reactivity/src/reactive.ts`
 ```ts 
@@ -566,4 +566,3 @@ console.log(dummy) // undefined
 在`get`拦截器中使用`createInstrumentations`创建的`mutableInstrumentations`（相当于将`add`、`push`等方法进行重写），
 以便能够进行依赖的收集和触发依赖操作。其中`get`、`size`、`has`、`forEach`、`keys`、`values`、`entries`方法会进行依赖的收集；
 `add`、`set`、`delete`、`clear`会触发依赖
-

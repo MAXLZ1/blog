@@ -11,7 +11,7 @@
 :::
 
 `ref`创建流程：
-![ref流程](../images/ref.png)
+![ref流程](../../images/ref.png)
 
 ```ts
 export function ref(value?: unknown) {
