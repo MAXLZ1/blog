@@ -21,13 +21,13 @@ export default defineConfig({
     ]
   ],
   themeConfig: {
-    repo: 'MAXLZ1',
+    repo: 'MAXLZ1/blog',
     repoLabel: 'My Github',
     editLinks: true,
     docsRepo: 'MAXLZ1/blog',
     docsDir: 'docs',
     docsBranch: 'main',
-    editLinkText: "贡献此文档",
+    editLinkText: "纠正文档",
     lastUpdated: '上次更新',
     nav: [
       {
@@ -55,7 +55,9 @@ export default defineConfig({
           {
             text: 'refs',
             children: [
-              { text: 'ref',  link: '/vue3-analysis/refs/ref' }
+              { text: 'ref',  link: '/vue3-analysis/refs/ref' },
+              { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
+              { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
             ]
           },
         ]
