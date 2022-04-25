@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.ac695fac.js";const i='{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/effect.md","lastUpdated":1650859727000}',r={};function s(c,o,n,f,p,_){return a(),t("div")}var l=e(r,[["render",s]]);export{i as __pageData,l as default};

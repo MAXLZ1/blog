@@ -1,4 +1,4 @@
-import{_ as n,c as s,o as e,d as a}from"./app.ac695fac.js";const _='{"title":"\u6E90\u7801\u76EE\u5F55","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/structure.md","lastUpdated":1650859727000}',r={},l=a(`<h1 id="\u6E90\u7801\u76EE\u5F55" tabindex="-1">\u6E90\u7801\u76EE\u5F55 <a class="header-anchor" href="#\u6E90\u7801\u76EE\u5F55" aria-hidden="true">#</a></h1><div class="language-bash line-numbers-mode"><pre><code>packages
+import{_ as n,c as s,o as e,d as a}from"./app.ac695fac.js";const _='{"title":"\u6E90\u7801\u76EE\u5F55","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/structure.md","lastUpdated":1650861175000}',r={},l=a(`<h1 id="\u6E90\u7801\u76EE\u5F55" tabindex="-1">\u6E90\u7801\u76EE\u5F55 <a class="header-anchor" href="#\u6E90\u7801\u76EE\u5F55" aria-hidden="true">#</a></h1><div class="language-bash line-numbers-mode"><pre><code>packages
 \u251C\u2500\u2500 compiler-core // \u6838\u5FC3\u7F16\u8BD1\u5668\uFF08\u4E0E\u5E73\u53F0\u65E0\u5173\uFF09
 \u251C\u2500\u2500 compiler-dom // dom\u7F16\u8BD1\u5668
 \u251C\u2500\u2500 compiler-sfc // vue\u5355\u6587\u4EF6\u7F16\u8BD1\u5668
