@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./app.2fa95f09.js";const i='{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/effect.md","lastUpdated":1651153543000}',r={};function s(c,o,n,f,p,_){return a(),t("div")}var l=e(r,[["render",s]]);export{i as __pageData,l as default};
