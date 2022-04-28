@@ -60,6 +60,13 @@ export default defineConfig({
               { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
             ]
           },
+          {
+            text: 'effect',
+            children: [
+              { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
+              { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
+            ]
+          }
         ]
       },
     ]
