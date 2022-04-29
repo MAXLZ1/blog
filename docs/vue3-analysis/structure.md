@@ -1,5 +1,9 @@
 # 源码目录
 
+::: tip
+本文档基于`vue3 v3.2.31`
+:::
+
 ```bash
 packages
 ├── compiler-core // 核心编译器（与平台无关）

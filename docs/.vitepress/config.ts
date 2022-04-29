@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/blog/',
   title: '我的博客',
-  lastUpdated: true,
+  lastUpdated: false,
   head: [
     [ 'script', { src: 'https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js' } ],
     [ 'script', {}, `window.addEventListener("load", function (event) {
@@ -22,13 +22,17 @@ export default defineConfig({
   ],
   themeConfig: {
     repo: 'MAXLZ1/blog',
-    repoLabel: 'My Github',
+    repoLabel: 'Github',
     editLinks: true,
     docsRepo: 'MAXLZ1/blog',
     docsDir: 'docs',
     docsBranch: 'main',
     editLinkText: "纠正文档",
     lastUpdated: '上次更新',
+    algolia: {
+      apiKey: '',
+      indexName: '',
+    },
     nav: [
       {
         text: 'Vue3',
