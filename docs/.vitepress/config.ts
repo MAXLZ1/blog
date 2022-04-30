@@ -70,7 +70,8 @@ export default defineConfig({
               { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
               { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
             ]
-          }
+          },
+          { text: 'computed', link: '/vue3-analysis/computed' },
         ]
       },
     ]
