@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as e}from"./app.67f43c75.js";const m='{"title":"computed","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/computed.md"}',p={},t=e("",16),o=[t];function c(l,r,u,i,k,d){return a(),s("div",null,o)}var f=n(p,[["render",c]]);export{m as __pageData,f as default};
