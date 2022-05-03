@@ -30,8 +30,8 @@ export default defineConfig({
     editLinkText: "纠正文档",
     lastUpdated: '上次更新',
     algolia: {
-      apiKey: '',
-      indexName: '',
+      apiKey: '4ca33066d2f74526b478fa9d236485f1',
+      indexName: 'maxlz1',
     },
     nav: [
       {
@@ -72,6 +72,12 @@ export default defineConfig({
             ]
           },
           { text: 'computed', link: '/vue3-analysis/computed' },
+          {
+            text: 'watch',
+            children: [
+              { text: 'watch', link: '/vue3-analysis/watch/watch' },
+            ]
+          },
         ]
       },
     ]
