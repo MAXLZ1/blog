@@ -30,6 +30,7 @@ export default defineConfig({
     editLinkText: "纠正文档",
     lastUpdated: '上次更新',
     algolia: {
+      appId: 'M5IBJH6J62',
       apiKey: '4ca33066d2f74526b478fa9d236485f1',
       indexName: 'maxlz1',
     },
