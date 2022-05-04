@@ -7,7 +7,7 @@
 :::
 
 `computed`流程图：
-![computed流程图]()
+![computed流程图](../images/computed.png)
 
 ```ts
 export function computed<T>(
