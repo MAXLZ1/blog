@@ -135,6 +135,38 @@ if (cb && deep) {
 }
 ```
 
+::: info
+`traverse`实现，递归遍历获取值，`seen`用于防止循环引用问题
+```ts
+export function traverse(value: unknown, seen?: Set<unknown>) {
+  if (!isObject(value) || (value as any)[ReactiveFlags.SKIP]) {
+    return value
+  }
+  seen = seen || new Set()
+  if (seen.has(value)) {
+    return value
+  }
+  seen.add(value)
+  if (isRef(value)) {
+    traverse(value.value, seen)
+  } else if (isArray(value)) {
+    for (let i = 0; i < value.length; i++) {
+      traverse(value[i], seen)
+    }
+  } else if (isSet(value) || isMap(value)) {
+    value.forEach((v: any) => {
+      traverse(v, seen)
+    })
+  } else if (isPlainObject(value)) {
+    for (const key in value) {
+      traverse((value as any)[key], seen)
+    }
+  }
+  return value
+}
+```
+:::
+
 紧跟着声明了`cleanup`与`onCleanup`两个变量，在`onCleanup`中给`cleanup`进行重新赋值。这里的`onCleanup`会作为`watchEffect`中回调函数的参数，用来注册清理失效时的回调
 
 ```ts
