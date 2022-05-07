@@ -36,52 +36,72 @@ export default defineConfig({
     },
     nav: [
       {
-        text: 'Vue3',
+        text: '源码解析',
         items: [
-          { text: 'Vue3源码解析', link: '/vue3-analysis/structure'  }
+          { text: 'Vue3源码解析', link: '/vue3-analysis/structure', activeMatch: '^/$|^/vue3-analysis/' },
+          { text: 'vue-router源码解析', link: '/vue-router/preface', activeMatch: '^/$|^/vue-router/' },
+          { text: 'pinia源码解析', link: '/pinia' },
         ]
       },
     ],
-    sidebar: [
-      {
-        text: 'Vue3源码解析',
-        children: [
-          { text: '源码目录结构', link: '/vue3-analysis/structure' },
-          {
-            text: 'reactive',
-            children: [
-              { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
-              { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
-              { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
-              { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
-              { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
-            ]
-          },
-          {
-            text: 'refs',
-            children: [
-              { text: 'ref',  link: '/vue3-analysis/refs/ref' },
-              { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
-              { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
-            ]
-          },
-          {
-            text: 'effect',
-            children: [
-              { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
-              { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
-            ]
-          },
-          { text: 'computed', link: '/vue3-analysis/computed' },
-          {
-            text: 'watch',
-            children: [
-              { text: 'watch', link: '/vue3-analysis/watch/watch' },
-            ]
-          },
-        ]
-      },
-    ]
+    sidebar: {
+      '/vue3-analysis': [
+        {
+          text: 'Vue3源码解析',
+          children: [
+            { text: '源码目录结构', link: '/vue3-analysis/structure' },
+            {
+              text: 'reactive',
+              children: [
+                { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
+                { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
+                { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
+                { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
+                { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
+              ]
+            },
+            {
+              text: 'refs',
+              children: [
+                { text: 'ref',  link: '/vue3-analysis/refs/ref' },
+                { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
+                { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
+              ]
+            },
+            {
+              text: 'effect',
+              children: [
+                { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
+                { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
+              ]
+            },
+            { text: 'computed', link: '/vue3-analysis/computed' },
+            { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
+            {
+              text: 'watch',
+              children: [
+                { text: 'watch', link: '/vue3-analysis/watch/watch' },
+              ]
+            },
+          ]
+        }
+      ],
+      '/vue-router': [
+        {
+          text: 'vue-router源码解析',
+          children: [
+            {
+              text: '前言',
+              link: '/vue-router/preface'
+            },
+            {
+              text: 'createRouter',
+              link: '/vue-router/createRouter'
+            },
+          ],
+        }
+      ]
+    }
   },
   markdown: {
     lineNumbers: true
