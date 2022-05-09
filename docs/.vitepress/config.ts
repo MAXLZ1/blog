@@ -95,8 +95,12 @@ export default defineConfig({
               link: '/vue-router/preface'
             },
             {
-              text: 'createRouter',
-              link: '/vue-router/createRouter'
+              text: 'app.use(router)',
+              link: '/vue-router/router-install'
+            },
+            {
+              text: 'createWebHistory',
+              link: '/vue-router/createWebHistory'
             },
           ],
         }
