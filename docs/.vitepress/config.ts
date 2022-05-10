@@ -102,6 +102,10 @@ export default defineConfig({
               text: 'createWebHistory',
               link: '/vue-router/createWebHistory'
             },
+            {
+              text: 'createWebHashHistory',
+              link: '/vue-router/createWebHashHistory'
+            },
           ],
         }
       ]

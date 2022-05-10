@@ -2,6 +2,8 @@
 
 ::: tip
 创建一个HTML5历史。
+
+文件位置：`src/history/html5.ts`
 :::
 
 `createWebHistory()`接收一个`base`参数，该参数提供一个基础路径。
