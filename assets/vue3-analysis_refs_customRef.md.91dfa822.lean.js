@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as p}from"./app.c4e37c69.js";const d='{"title":"customRef","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/refs/customRef.md"}',t={},e=p("",8),o=[e];function c(l,u,r,k,i,b){return a(),s("div",null,o)}var f=n(t,[["render",c]]);export{d as __pageData,f as default};
