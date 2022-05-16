@@ -110,6 +110,14 @@ export default defineConfig({
               text: 'createMemoryHistory',
               link: '/vue-router/createMemoryHistory'
             },
+            {
+              text: 'routerMatcher',
+              link: '/vue-router/routerMatcher'
+            },
+            {
+              text: 'createRouter',
+              link: '/vue-router/createRouter'
+            },
           ],
         }
       ]
