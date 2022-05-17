@@ -116,7 +116,16 @@ export default defineConfig({
             },
             {
               text: 'createRouter',
-              link: '/vue-router/createRouter'
+              link: '/vue-router/createRouter',
+            },
+            {
+              text: 'router方法',
+              children: [
+                {
+                  text: 'addRoute',
+                  link: '/vue-router/addRoute'
+                }
+              ]
             },
           ],
         }
