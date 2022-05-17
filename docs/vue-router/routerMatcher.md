@@ -78,7 +78,7 @@ return { addRoute, resolve, removeRoute, getRoutes, getRecordMatcher }
 
 ### `addRoute`
 
-`addRoute`函数接收三个参数：`record`、`parent`、`originalRecord`。
+`addRoute`函数接收三个参数：`record`（新增的路由）、`parent`（父`matcher`）、`originalRecord`（原始`matcher`）。
 
 ```ts
 function addRoute(
@@ -152,16 +152,17 @@ function addRoute(
     if (__DEV__ && parent && path[0] === '/')
       checkMissingParamsInAbsolutePath(matcher, parent)
 
-    // 如果有别名，将matcher放入原始记录的alias中，以便后续能够删除
+    // 如果有originalRecord，将matcher放入原始记录的alias中，以便后续能够删除
     if (originalRecord) {
       originalRecord.alias.push(matcher)
       // 检查originalRecord与matcher中动态参数是否相同
       if (__DEV__) {
         checkSameParams(originalRecord, matcher)
       }
-    } else { // 没有别名
+    } else { // 没有originalRecord
+      // 因为原始记录索引为0，所以originalMatcher为有原始记录所产生的matcher
       originalMatcher = originalMatcher || matcher
-      // 如果matcher不是originalMatcher，说明originalMatcher是传入的，此时将matcher放入originalMatcher.alias中
+      // 如果matcher不是原始记录产生的matcher，说明此时matcher是由别名记录产生的，此时将matcher放入originalMatcher.alias中
       if (originalMatcher !== matcher) originalMatcher.alias.push(matcher)
       // 如果命名并且仅用于顶部记录，则删除路由（避免嵌套调用）
       if (isRootAdd && record.name && !isAliasRecord(matcher))
