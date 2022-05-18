@@ -133,6 +133,10 @@ export default defineConfig({
                   text: 'hasRoute',
                   link: '/vue-router/hasRoute'
                 },
+                {
+                  text: 'getRoutes',
+                  link: '/vue-router/getRoutes'
+                },
               ]
             },
           ],
