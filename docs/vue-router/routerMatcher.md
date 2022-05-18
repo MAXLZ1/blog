@@ -732,7 +732,7 @@ function resolve(
         })
 
       name = matcher.record.name
-      // 处理params
+      // 合并location.params和currentLocation中的params
       params = assign(
         paramsFromLocation(
           currentLocation.params,
@@ -758,7 +758,7 @@ function resolve(
         params = matcher.parse(path)!
         name = matcher.record.name
       }
-    } else { // 如果location中没有name、path属性，就使用当前location的name或path获取matcher
+    } else { // 如果location中没有name、path属性，就使用currentLocation的name或path获取matcher
       matcher = currentLocation.name
         ? matcherMap.get(currentLocation.name)
         : matchers.find(m => m.re.test(currentLocation.path))
