@@ -124,7 +124,11 @@ export default defineConfig({
                 {
                   text: 'addRoute',
                   link: '/vue-router/addRoute'
-                }
+                },
+                {
+                  text: 'removeRoute',
+                  link: '/vue-router/removeRoute'
+                },
               ]
             },
           ],
