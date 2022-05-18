@@ -129,6 +129,10 @@ export default defineConfig({
                   text: 'removeRoute',
                   link: '/vue-router/removeRoute'
                 },
+                {
+                  text: 'hasRoute',
+                  link: '/vue-router/hasRoute'
+                },
               ]
             },
           ],
