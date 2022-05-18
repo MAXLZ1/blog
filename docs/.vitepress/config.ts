@@ -137,6 +137,10 @@ export default defineConfig({
                   text: 'getRoutes',
                   link: '/vue-router/getRoutes'
                 },
+                {
+                  text: 'resolve',
+                  link: '/vue-router/resolve'
+                },
               ]
             },
           ],
