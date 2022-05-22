@@ -145,6 +145,10 @@ export default defineConfig({
                   text: 'push',
                   link: '/vue-router/push'
                 },
+                {
+                  text: 'replace',
+                  link: '/vue-router/replace'
+                },
               ]
             },
           ],
