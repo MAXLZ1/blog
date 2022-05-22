@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as e}from"./app.35cc8530.js";var p="/blog/assets/computed.12b2672d.png";const f='{"title":"computed","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/computed.md"}',t={},o=e("",16),c=[o];function l(r,u,i,k,d,b){return a(),s("div",null,c)}var g=n(t,[["render",l]]);export{f as __pageData,g as default};
