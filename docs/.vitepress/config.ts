@@ -161,6 +161,10 @@ export default defineConfig({
                   text: '全局导航守卫',
                   link: '/vue-router/全局导航守卫'
                 },
+                {
+                  text: 'isReady',
+                  link: '/vue-router/isReady'
+                },
               ]
             },
           ],
