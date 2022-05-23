@@ -153,6 +153,10 @@ export default defineConfig({
                   text: 'go',
                   link: '/vue-router/go'
                 },
+                {
+                  text: 'back、forward',
+                  link: '/vue-router/back、forward'
+                },
               ]
             },
           ],
