@@ -149,6 +149,10 @@ export default defineConfig({
                   text: 'replace',
                   link: '/vue-router/replace'
                 },
+                {
+                  text: 'go',
+                  link: '/vue-router/go'
+                },
               ]
             },
           ],
