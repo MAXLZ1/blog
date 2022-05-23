@@ -157,6 +157,10 @@ export default defineConfig({
                   text: 'back、forward',
                   link: '/vue-router/back、forward'
                 },
+                {
+                  text: '全局导航守卫',
+                  link: '/vue-router/全局导航守卫'
+                },
               ]
             },
           ],
