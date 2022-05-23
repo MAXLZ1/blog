@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as p}from"./app.e26994a1.js";const d='{"title":"createMemoryHistory","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/createMemoryHistory.md"}',t={},e=p("",15),o=[e];function c(l,u,r,i,k,b){return a(),s("div",null,o)}var y=n(t,[["render",c]]);export{d as __pageData,y as default};

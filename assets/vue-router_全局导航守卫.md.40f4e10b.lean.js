@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as p}from"./app.e26994a1.js";const m='{"title":"\u5168\u5C40\u5BFC\u822A\u5B88\u536B","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/\u5168\u5C40\u5BFC\u822A\u5B88\u536B.md"}',e={},t=p("",7),o=[t];function c(l,r,u,i,k,d){return a(),s("div",null,o)}var f=n(e,[["render",c]]);export{m as __pageData,f as default};
