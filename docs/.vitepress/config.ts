@@ -170,7 +170,11 @@ export default defineConfig({
             {
               text: '组件内导航守卫',
               link: '/vue-router/组件内导航守卫'
-            }
+            },
+            {
+              text: 'useRoute、useRouter',
+              link: '/vue-router/useRoute、useRouter'
+            },
           ]
         },
       ],
