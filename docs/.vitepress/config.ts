@@ -88,88 +88,92 @@ export default defineConfig({
       ],
       '/vue-router': [
         {
-          text: 'vue-router源码解析',
+          text: '前言',
+          link: '/vue-router/preface'
+        },
+        {
+          text: 'app.use(router)',
+          link: '/vue-router/router-install'
+        },
+        {
+          text: 'createWebHistory',
+          link: '/vue-router/createWebHistory'
+        },
+        {
+          text: 'createWebHashHistory',
+          link: '/vue-router/createWebHashHistory'
+        },
+        {
+          text: 'createMemoryHistory',
+          link: '/vue-router/createMemoryHistory'
+        },
+        {
+          text: 'routerMatcher',
+          link: '/vue-router/routerMatcher'
+        },
+        {
+          text: 'createRouter',
+          link: '/vue-router/createRouter',
+        },
+        {
+          text: 'router方法',
           children: [
             {
-              text: '前言',
-              link: '/vue-router/preface'
+              text: 'addRoute',
+              link: '/vue-router/addRoute'
             },
             {
-              text: 'app.use(router)',
-              link: '/vue-router/router-install'
+              text: 'removeRoute',
+              link: '/vue-router/removeRoute'
             },
             {
-              text: 'createWebHistory',
-              link: '/vue-router/createWebHistory'
+              text: 'hasRoute',
+              link: '/vue-router/hasRoute'
             },
             {
-              text: 'createWebHashHistory',
-              link: '/vue-router/createWebHashHistory'
+              text: 'getRoutes',
+              link: '/vue-router/getRoutes'
             },
             {
-              text: 'createMemoryHistory',
-              link: '/vue-router/createMemoryHistory'
+              text: 'resolve',
+              link: '/vue-router/resolve'
             },
             {
-              text: 'routerMatcher',
-              link: '/vue-router/routerMatcher'
+              text: 'push',
+              link: '/vue-router/push'
             },
             {
-              text: 'createRouter',
-              link: '/vue-router/createRouter',
+              text: 'replace',
+              link: '/vue-router/replace'
             },
             {
-              text: 'router方法',
-              children: [
-                {
-                  text: 'addRoute',
-                  link: '/vue-router/addRoute'
-                },
-                {
-                  text: 'removeRoute',
-                  link: '/vue-router/removeRoute'
-                },
-                {
-                  text: 'hasRoute',
-                  link: '/vue-router/hasRoute'
-                },
-                {
-                  text: 'getRoutes',
-                  link: '/vue-router/getRoutes'
-                },
-                {
-                  text: 'resolve',
-                  link: '/vue-router/resolve'
-                },
-                {
-                  text: 'push',
-                  link: '/vue-router/push'
-                },
-                {
-                  text: 'replace',
-                  link: '/vue-router/replace'
-                },
-                {
-                  text: 'go',
-                  link: '/vue-router/go'
-                },
-                {
-                  text: 'back、forward',
-                  link: '/vue-router/back、forward'
-                },
-                {
-                  text: '全局导航守卫',
-                  link: '/vue-router/全局导航守卫'
-                },
-                {
-                  text: 'isReady',
-                  link: '/vue-router/isReady'
-                },
-              ]
+              text: 'go',
+              link: '/vue-router/go'
             },
-          ],
-        }
-      ]
+            {
+              text: 'back、forward',
+              link: '/vue-router/back、forward'
+            },
+            {
+              text: '全局导航守卫',
+              link: '/vue-router/全局导航守卫'
+            },
+            {
+              text: 'isReady',
+              link: '/vue-router/isReady'
+            },
+          ]
+        },
+        {
+          text: 'Composition API',
+          children: [
+            {
+              text: '组件内导航守卫',
+              link: '/vue-router/组件内导航守卫'
+            }
+          ]
+        },
+      ],
     }
   },
   markdown: {
