@@ -175,6 +175,10 @@ export default defineConfig({
               text: 'useRoute、useRouter',
               link: '/vue-router/useRoute、useRouter'
             },
+            {
+              text: 'useLink',
+              link: '/vue-router/useLink'
+            },
           ]
         },
       ],
