@@ -34,6 +34,7 @@ export function useLink(props: UseLinkOptions) {
     )
     return (
       length > 1 &&
+        // 如果目标路由的父路由与
         getOriginalPath(routeMatched) === parentRecordPath &&
         // 避免将孩子与父路由比较
         currentMatched[currentMatched.length - 1].path !== parentRecordPath
@@ -88,7 +89,7 @@ export function useLink(props: UseLinkOptions) {
 
 在进行路由跳转时，一些特殊情况下是不能跳转的，这些情况包括：
 
-1. 按住了``（MAC的`commond`）键、`alt`键、`ctrl`键、`shift`键中的任一键
+1. 按住了window`⊞`（MAC的`commond`）键、`alt`键、`ctrl`键、`shift`键中的任一键
 2. 调用过`e.preventDefault()`
 3. 右键
 4. `target='_blank'`
