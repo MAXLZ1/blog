@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as e}from"./app.e945831b.js";const m='{"title":"createRouter","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/createRouter.md"}',p={},o=e("",19),t=[o];function c(r,l,u,i,k,d){return a(),s("div",null,t)}var y=n(p,[["render",c]]);export{m as __pageData,y as default};
