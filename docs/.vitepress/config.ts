@@ -181,6 +181,15 @@ export default defineConfig({
             },
           ]
         },
+        {
+          text: '路由组件',
+          children: [
+            {
+              text: 'router-link',
+              link: '/vue-router/router-link',
+            },
+          ],
+        }
       ],
     }
   },
