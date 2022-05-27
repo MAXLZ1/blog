@@ -110,7 +110,7 @@ export function createRouter(options: RouterOptions): Router {
 }
 ```
 
-可以看到在`install`方法中，首先会注册`RouterLink`、`RouterView`两个组件，然后设置了两个全局的属性`$router`（路由实例）、`$route`（当前的路由信息），紧接着进行第一次跳转。紧接着又向`app`中注入了三个属性：`routerKey`、`routeLocationKey`、`routerViewLocationKey`，分别表示路由实例、深度响应式的当前路由信息对象、浅层响应式的当前路由信息对象，注意这里的`key`值实际是`Symbol`类型，这里列举的`key`只是变量的名称。然后对`app.unmount`vue实例的卸载方法进行了拦截，拦截的主要目的是在路由实例不被使用时，将一些属性重置并解绑一些监听事件。最后将路由实例返回。
+可以看到在`install`方法中，首先会注册`RouterLink`、`RouterView`两个组件，然后设置了两个全局的属性`$router`（路由实例）、`$route`（当前的路由信息），紧接着进行第一次跳转。紧接着又向`app`中注入了三个属性：`routerKey`、`routeLocationKey`、`routerViewLocationKey`，分别表示路由实例、深度响应式的当前路由信息对象、浅层响应式的当前路由信息对象，注意这里的`key`值实际是`Symbol`类型，这里列举的`key`只是变量的名称。然后对`app.unmount`vue实例的卸载方法进行了拦截，拦截的主要目的是在路由实例不被使用时，将一些属性重置并解绑一些监听事件。
 
 **总的来说，`install`函数做了以下几件事：**
 1. 注册`RouterLink`、`RouterView`组件
@@ -118,4 +118,3 @@ export function createRouter(options: RouterOptions): Router {
 3. 根据地址栏进行首次的路由跳转
 4. 向`app`中注入一些路由相关信息，如路由实例、响应式的当前路由信息对象
 5. 拦截`app.unmount`方法，在卸载之前重置一些属性、删除一些监听函数
-6. 最后返回`router`实例
