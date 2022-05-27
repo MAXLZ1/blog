@@ -188,6 +188,10 @@ export default defineConfig({
               text: 'router-link',
               link: '/vue-router/router-link',
             },
+            {
+              text: 'router-view',
+              link: '/vue-router/router-view',
+            },
           ],
         }
       ],
