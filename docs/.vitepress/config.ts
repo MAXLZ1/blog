@@ -40,7 +40,7 @@ export default defineConfig({
         items: [
           { text: 'Vue3源码解析', link: '/vue3-analysis/structure', activeMatch: '^/$|^/vue3-analysis/' },
           { text: 'vue-router源码解析', link: '/vue-router/preface', activeMatch: '^/$|^/vue-router/' },
-          { text: 'pinia源码解析', link: '/pinia' },
+          { text: 'pinia源码解析', link: '/pinia/preface', activeMatch: '^/$|^/pinia/' },
         ]
       },
     ],
@@ -199,6 +199,12 @@ export default defineConfig({
           link: '/vue-router/总结'
         }
       ],
+      '/pinia': [
+        {
+          text: '前言',
+          link: '/pinia/preface'
+        }
+      ]
     }
   },
   markdown: {
