@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as p}from"./app.6324e35a.js";const d='{"title":"useLink","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/useLink.md"}',t={},e=p("",6),o=[e];function c(l,u,r,i,k,b){return a(),s("div",null,o)}var f=n(t,[["render",c]]);export{d as __pageData,f as default};
