@@ -193,6 +193,10 @@ export default defineConfig({
               link: '/vue-router/router-view',
             },
           ],
+        },
+        {
+          text: '总结',
+          link: '/vue-router/总结'
         }
       ],
     }
