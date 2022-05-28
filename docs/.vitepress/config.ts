@@ -203,7 +203,11 @@ export default defineConfig({
         {
           text: '前言',
           link: '/pinia/preface'
-        }
+        },
+        {
+          text: 'createPinia',
+          link: '/pinia/createPinia'
+        },
       ]
     }
   },
