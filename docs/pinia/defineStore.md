@@ -77,7 +77,7 @@ export function defineStore(
   }
 
   function useSttore(pinia, hot) { //... }
-  
+  // 当使用mapStores时，会使用该id+mapStoreSuffix作为key值
   useStore.$id = id
   
   return useStore
