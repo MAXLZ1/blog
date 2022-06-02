@@ -229,5 +229,9 @@ function getPiniaSidebar() {
       text: 'defineStore',
       link: '/pinia/defineStore'
     },
+    {
+      text: 'storeToRefs',
+      link: '/pinia/storeToRefs'
+    },
   ]
 }
