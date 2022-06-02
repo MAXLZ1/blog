@@ -1,0 +1,1 @@
+import{_ as n,c as a,o as s,d as e}from"./app.69cbc3a8.js";const m='{"title":"replace","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/replace.md"}',t={},p=e("",4),o=[p];function c(l,r,u,i,d,k){return s(),a("div",null,o)}var h=n(t,[["render",c]]);export{m as __pageData,h as default};
