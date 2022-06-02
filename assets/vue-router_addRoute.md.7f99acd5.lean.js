@@ -1,1 +1,0 @@
-import{_ as n,c as a,o as s,d as e}from"./app.69cbc3a8.js";var t="/blog/assets/addRoute.34634f16.png";const R='{"title":"addRoute","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/addRoute.md"}',p={},o=e("",7),r=[o];function c(u,l,d,i,k,m){return s(),a("div",null,r)}var _=n(p,[["render",c]]);export{R as __pageData,_ as default};
