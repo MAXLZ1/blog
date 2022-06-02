@@ -235,11 +235,16 @@ function getPiniaSidebar() {
     },
     {
       text: 'api without setup()',
+      link: '/pinia/mapHelper',
       children: [
         {
           text: 'mapStores',
           link: '/pinia/mapStores',
-        }
+        },
+        {
+          text: 'mapState',
+          link: '/pinia/mapState',
+        },
       ]
     }
   ]
