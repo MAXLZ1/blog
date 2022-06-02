@@ -45,173 +45,189 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      '/vue3-analysis': [
-        {
-          text: 'Vue3源码解析',
-          children: [
-            { text: '源码目录结构', link: '/vue3-analysis/structure' },
-            {
-              text: 'reactive',
-              children: [
-                { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
-                { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
-                { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
-                { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
-                { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
-              ]
-            },
-            {
-              text: 'refs',
-              children: [
-                { text: 'ref',  link: '/vue3-analysis/refs/ref' },
-                { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
-                { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
-              ]
-            },
-            {
-              text: 'effect',
-              children: [
-                { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
-                { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
-              ]
-            },
-            { text: 'computed', link: '/vue3-analysis/computed' },
-            { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
-            {
-              text: 'watch',
-              children: [
-                { text: 'watch', link: '/vue3-analysis/watch/watch' },
-              ]
-            },
-          ]
-        }
-      ],
-      '/vue-router': [
-        {
-          text: '前言',
-          link: '/vue-router/preface'
-        },
-        {
-          text: 'app.use(router)',
-          link: '/vue-router/router-install'
-        },
-        {
-          text: 'createWebHistory',
-          link: '/vue-router/createWebHistory'
-        },
-        {
-          text: 'createWebHashHistory',
-          link: '/vue-router/createWebHashHistory'
-        },
-        {
-          text: 'createMemoryHistory',
-          link: '/vue-router/createMemoryHistory'
-        },
-        {
-          text: 'routerMatcher',
-          link: '/vue-router/routerMatcher'
-        },
-        {
-          text: 'createRouter',
-          link: '/vue-router/createRouter',
-        },
-        {
-          text: 'router方法',
-          children: [
-            {
-              text: 'addRoute',
-              link: '/vue-router/addRoute'
-            },
-            {
-              text: 'removeRoute',
-              link: '/vue-router/removeRoute'
-            },
-            {
-              text: 'hasRoute',
-              link: '/vue-router/hasRoute'
-            },
-            {
-              text: 'getRoutes',
-              link: '/vue-router/getRoutes'
-            },
-            {
-              text: 'resolve',
-              link: '/vue-router/resolve'
-            },
-            {
-              text: 'push',
-              link: '/vue-router/push'
-            },
-            {
-              text: 'replace',
-              link: '/vue-router/replace'
-            },
-            {
-              text: 'go',
-              link: '/vue-router/go'
-            },
-            {
-              text: 'back、forward',
-              link: '/vue-router/back、forward'
-            },
-            {
-              text: '全局导航守卫',
-              link: '/vue-router/全局导航守卫'
-            },
-            {
-              text: 'isReady',
-              link: '/vue-router/isReady'
-            },
-          ]
-        },
-        {
-          text: 'Composition API',
-          children: [
-            {
-              text: '组件内导航守卫',
-              link: '/vue-router/组件内导航守卫'
-            },
-            {
-              text: 'useRoute、useRouter',
-              link: '/vue-router/useRoute、useRouter'
-            },
-            {
-              text: 'useLink',
-              link: '/vue-router/useLink'
-            },
-          ]
-        },
-        {
-          text: '路由组件',
-          children: [
-            {
-              text: 'router-link',
-              link: '/vue-router/router-link',
-            },
-            {
-              text: 'router-view',
-              link: '/vue-router/router-view',
-            },
-          ],
-        },
-        {
-          text: '总结',
-          link: '/vue-router/总结'
-        }
-      ],
-      '/pinia': [
-        {
-          text: '前言',
-          link: '/pinia/preface'
-        },
-        {
-          text: 'createPinia',
-          link: '/pinia/createPinia'
-        },
-      ]
+      '/vue3-analysis': getVueSidebar(),
+      '/vue-router': getVueRouterSiderbar(),
+      '/pinia': getPiniaSidebar()
     }
   },
   markdown: {
     lineNumbers: true
   },
 })
+
+function getVueSidebar() {
+  return [
+    {
+      text: 'Vue3源码解析',
+      children: [
+        { text: '源码目录结构', link: '/vue3-analysis/structure' },
+        {
+          text: 'reactive',
+          children: [
+            { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
+            { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
+            { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
+            { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
+            { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
+          ]
+        },
+        {
+          text: 'refs',
+          children: [
+            { text: 'ref',  link: '/vue3-analysis/refs/ref' },
+            { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
+            { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
+          ]
+        },
+        {
+          text: 'effect',
+          children: [
+            { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
+            { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
+          ]
+        },
+        { text: 'computed', link: '/vue3-analysis/computed' },
+        { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
+        {
+          text: 'watch',
+          children: [
+            { text: 'watch', link: '/vue3-analysis/watch/watch' },
+          ]
+        },
+      ]
+    }
+  ]
+}
+
+function getVueRouterSiderbar() {
+  return [
+    {
+      text: '前言',
+      link: '/vue-router/preface'
+    },
+    {
+      text: 'app.use(router)',
+      link: '/vue-router/router-install'
+    },
+    {
+      text: 'createWebHistory',
+      link: '/vue-router/createWebHistory'
+    },
+    {
+      text: 'createWebHashHistory',
+      link: '/vue-router/createWebHashHistory'
+    },
+    {
+      text: 'createMemoryHistory',
+      link: '/vue-router/createMemoryHistory'
+    },
+    {
+      text: 'routerMatcher',
+      link: '/vue-router/routerMatcher'
+    },
+    {
+      text: 'createRouter',
+      link: '/vue-router/createRouter',
+    },
+    {
+      text: 'router方法',
+      children: [
+        {
+          text: 'addRoute',
+          link: '/vue-router/addRoute'
+        },
+        {
+          text: 'removeRoute',
+          link: '/vue-router/removeRoute'
+        },
+        {
+          text: 'hasRoute',
+          link: '/vue-router/hasRoute'
+        },
+        {
+          text: 'getRoutes',
+          link: '/vue-router/getRoutes'
+        },
+        {
+          text: 'resolve',
+          link: '/vue-router/resolve'
+        },
+        {
+          text: 'push',
+          link: '/vue-router/push'
+        },
+        {
+          text: 'replace',
+          link: '/vue-router/replace'
+        },
+        {
+          text: 'go',
+          link: '/vue-router/go'
+        },
+        {
+          text: 'back、forward',
+          link: '/vue-router/back、forward'
+        },
+        {
+          text: '全局导航守卫',
+          link: '/vue-router/全局导航守卫'
+        },
+        {
+          text: 'isReady',
+          link: '/vue-router/isReady'
+        },
+      ]
+    },
+    {
+      text: 'Composition API',
+      children: [
+        {
+          text: '组件内导航守卫',
+          link: '/vue-router/组件内导航守卫'
+        },
+        {
+          text: 'useRoute、useRouter',
+          link: '/vue-router/useRoute、useRouter'
+        },
+        {
+          text: 'useLink',
+          link: '/vue-router/useLink'
+        },
+      ]
+    },
+    {
+      text: '路由组件',
+      children: [
+        {
+          text: 'router-link',
+          link: '/vue-router/router-link',
+        },
+        {
+          text: 'router-view',
+          link: '/vue-router/router-view',
+        },
+      ],
+    },
+    {
+      text: '总结',
+      link: '/vue-router/总结'
+    }
+  ]
+}
+
+function getPiniaSidebar() {
+  return [
+    {
+      text: '前言',
+      link: '/pinia/preface'
+    },
+    {
+      text: 'createPinia',
+      link: '/pinia/createPinia'
+    },
+    {
+      text: 'defineStore',
+      link: '/pinia/defineStore'
+    },
+  ]
+}
