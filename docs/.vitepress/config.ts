@@ -242,8 +242,8 @@ function getPiniaSidebar() {
           link: '/pinia/mapStores',
         },
         {
-          text: 'mapState',
-          link: '/pinia/mapState',
+          text: 'mapState、mapActions',
+          link: '/pinia/mapState、mapActions',
         },
       ]
     }
