@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as e}from"./app.a6de7e81.js";const f='{"title":"shallowRef","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/refs/shallowRef.md"}',p={},o=e("",5),t=[o];function c(l,r,u,i,k,d){return a(),s("div",null,t)}var m=n(p,[["render",c]]);export{f as __pageData,m as default};

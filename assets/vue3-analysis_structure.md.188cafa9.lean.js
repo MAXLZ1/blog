@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as e,d as a}from"./app.82b5348e.js";const _='{"title":"\u6E90\u7801\u76EE\u5F55","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/structure.md"}',r={},c=a("",3),l=[c];function p(i,t,o,b,m,u){return e(),n("div",null,l)}var v=s(r,[["render",p]]);export{_ as __pageData,v as default};
