@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as p}from"./app.edec1e92.js";const d='{"title":"resolve","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/resolve.md"}',t={},o=p("",7),e=[o];function c(l,u,r,i,k,m){return a(),s("div",null,e)}var h=n(t,[["render",c]]);export{d as __pageData,h as default};
