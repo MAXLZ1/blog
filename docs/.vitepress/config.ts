@@ -233,5 +233,14 @@ function getPiniaSidebar() {
       text: 'storeToRefs',
       link: '/pinia/storeToRefs'
     },
+    {
+      text: 'api without setup()',
+      children: [
+        {
+          text: 'mapStores',
+          link: '/pinia/mapStores',
+        }
+      ]
+    }
   ]
 }
