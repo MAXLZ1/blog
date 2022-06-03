@@ -245,6 +245,10 @@ function getPiniaSidebar() {
           text: 'mapState、mapActions',
           link: '/pinia/mapState、mapActions',
         },
+        {
+          text: 'mapWritableState',
+          link: '/pinia/mapWritableState',
+        },
       ]
     }
   ]
