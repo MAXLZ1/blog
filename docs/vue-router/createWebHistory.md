@@ -87,9 +87,10 @@ function createCurrentLocation(
   return path + search + hash
 }
 ```
+可以看到`createCurrentLocation`其实就是获取`window.location`相对`base`的`location`。举几个例子（以下几个例子的`base`都经过标准化）：如果`window.location.pathname`为`/a/b/c`，`base`为`/a`，那么通过`createCurrentLocation`得到的`location`为`/b/c`；如果是有`hash`的情况，`window.location.hash`为`#/a/b/c`，`base`为`#/a`，那么通过`createCurrentLocation`得到的`location`为`/b/c`；`window.location.hash`为`#/a/b/c`，`base`为`#`，那么通过`createCurrentLocation`得到的`location`为`/a/b/c`。
 
 - `state`：一个包含`value`属性的对象，`value`存储的是当前的`history.state`
-- `push`：向历史记录中添加一条记录
+- `push`：向历史记录中添加一条记录。在`push`过程中你会发现调用了两次`changeLocation`，在第一次调用`changeLocation`时，目的是为了记录当前页面在的滚动位置，如果使用`history.back()`或浏览器回退/前进按钮回到这个页面，页面会滚动到对应位置，为了不再历史栈中保存新的记录，第一次记录使用的`reaplceState`替换当前历史记录。第二次调用`changeLocation`是会跳转到需要跳转的位置。
 - `reaplce`：替换当前历史记录
 
 ```ts
@@ -165,6 +166,7 @@ function useHistoryStateNavigation(base: string) {
         true
       ),
       data,
+      // 因为是replace操作，所以position不变
       { position: historyState.value.position }
     )
 
@@ -191,15 +193,17 @@ function useHistoryStateNavigation(base: string) {
       )
     }
 
+    // 第一次changeLocation，使用replace刷新当前历史，目的是记录当前页面的滚动位置
     changeLocation(currentState.current, currentState, true)
 
     const state: StateEntry = assign(
       {},
       buildState(currentLocation.value, to, null),
+      // push操作，历史记录的position+1
       { position: currentState.position + 1 },
       data
     )
-
+    // 第二次跳转，跳转到需要跳转的位置
     changeLocation(to, state, false)
     currentLocation.value = to
   }
@@ -233,8 +237,8 @@ function useHistoryListeners(
   let pauseState: HistoryLocation | null = null
 
   const popStateHandler: PopStateListener = ({
-    state,
-  }: {
+   state,
+ }: {
     state: StateEntry | null
   }) => {
     const to = createCurrentLocation(base, location)
@@ -246,16 +250,17 @@ function useHistoryListeners(
       currentLocation.value = to
       historyState.value = state
 
-      // ignore the popstate and reset the pauseState
+      // 如果暂停监听了，则直接return，同时pauseState赋为null
       if (pauseState && pauseState === from) {
         pauseState = null
         return
       }
+      // 计算移动步数
       delta = fromState ? state.position - fromState.position : 0
     } else {
       replace(to)
     }
-
+    // 执行监听函数列表
     listeners.forEach(listener => {
       listener(currentLocation.value, from, {
         delta,
@@ -290,6 +295,7 @@ function useHistoryListeners(
   function beforeUnloadListener() {
     const { history } = window
     if (!history.state) return
+    // 当页面关闭时记录页面滚动位置
     history.replaceState(
       assign({}, history.state, { scroll: computeScrollPosition() }),
       ''
@@ -316,7 +322,7 @@ function useHistoryListeners(
 }
 ```
 
-创建完`historyNavigation`、`historyListeners`之后，紧跟着声明一个`go`函数。该函数接收两个变量：`delta`历史记录前进或后退的步数，`triggerListeners`是否触发监听
+创建完`historyNavigation`、`historyListeners`之后，紧跟着声明一个`go`函数。该函数接收两个变量：`delta`历史记录移动的步数，`triggerListeners`是否触发监听
 
 ```ts
 function go(delta: number, triggerListeners = true) {

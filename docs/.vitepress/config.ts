@@ -250,6 +250,6 @@ function getPiniaSidebar() {
           link: '/pinia/mapWritableState',
         },
       ]
-    }
+    },
   ]
 }
