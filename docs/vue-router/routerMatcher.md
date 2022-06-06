@@ -181,12 +181,14 @@ function addRoute(
       }
     }
 
+    // 如果originalRecord是方法传入的，那么originalRecord继续保持
+    // 如果originalRecord方法未传入。由于原始的matcher总是在索引为0的位置，所以如果有别名，那么这些别名的原始matcher会始终指向索引为0的位置
     originalRecord = originalRecord || matcher
     // 添加matcher
     insertMatcher(matcher)
   }
 
-  // 返回一个删除路由的方法
+  // 返回一个删除原始matcher的方法
   return originalMatcher
     ? () => {
         removeRoute(originalMatcher!)
@@ -456,9 +458,9 @@ export function tokenizePath(path: string): Array<Token[]> {
 }
 ```
 
-还是以第3个为例`/:id(\\d+)new`、，我们看一下`tokenizePath`的过程：
+还是以第3个为例`/:id(\\d+)new`，我们看一下`tokenizePath`的过程：
 
-1. 遍历前的状态：`state=TokenizerState.Static; previousState=TokenizerState.Static; tokens=[]; segment; buffer=''; i=0; char=''; customRe='';`
+1. 初始状态：`state=TokenizerState.Static; previousState=TokenizerState.Static; tokens=[]; segment; buffer=''; i=0; char=''; customRe='';`
 2. 当`i=0`时，进入`TokenizerState.Static`分支，此时`char='/'; buffer='';`，不会执行`consumeBuffer`，执行`finalizeSegment`，该轮结束后发生变化的是`segment=[]; i=1; char='/';`
 3. 当`i=1`时，进入`TokenizerState.Static`分支，此时`char=':'; buffer='';`，执行`consumeBuffer`，因为`buffer=''`，所以`consumeBuffer`中什么都没做，最后`state=TokenizerState.Param`，该轮结束后发生变化的是`state=TokenizerState.Param; i=2; char=':';`
 4. 当`i=2`时，进入`TokenizerState.Param`分支，此时`char='i'; buffer='';`，执行`addCharToBuffer`，该轮结束后发生变化的是`buffer='i'; i=3; char='i';`
@@ -546,7 +548,7 @@ export function tokensToParser(
         // 用户自定义的正则需要验证正则的正确性
         if (re !== BASE_PARAM_PATTERN) {
           subSegmentScore += PathScore.BonusCustomRegExp
-          // 使用前确保正则时正确的
+          // 使用前确保正则是正确的
           try {
             new RegExp(`(${re})`)
           } catch (err) {
@@ -837,7 +839,7 @@ function getRecordMatcher(name: RouteRecordName) {
 }
 ```
 
-在`addRoute`最后调用了`insertMatcher`进行`matcher`的添加，这里我们看下是如何添加`marcher`的
+在`addRoute`最后调用了`insertMatcher`进行`matcher`的添加，这里我们看下是如何添加`matcher`的
 
 在添加`matcher`时，并不是直接`matchers.add`，而是根据`matcher.score`进行排序。比较分数时根据数组中的每一项挨个比较，不是比较总分。
 
@@ -859,20 +861,24 @@ function insertMatcher(matcher: RouteRecordMatcher) {
 ```
 
 ```ts
+// 返回0表示a与b相等；返回>0，b先排序；返回<0，a先排序
 function compareScoreArray(a: number[], b: number[]): number {
   let i = 0
   while (i < a.length && i < b.length) {
     const diff = b[i] - a[i]
+    // 一旦a与b对位索引对应的值有差值，直接返回
     if (diff) return diff
 
     i++
   }
 
   if (a.length < b.length) {
+    // 如果a.length为1且第一个值的分数为PathScore.Static + PathScore.Segment，返回-1，表示a先排序，否则返回1，表示b先排序
     return a.length === 1 && a[0] === PathScore.Static + PathScore.Segment
       ? -1
       : 1
   } else if (a.length > b.length) {
+    // 如果b.length为1且第一个值的分数为PathScore.Static + PathScore.Segment，返回-1，表示b先排序，否则返回1，表示a先排序
     return b.length === 1 && b[0] === PathScore.Static + PathScore.Segment
       ? 1
       : -1
@@ -881,6 +887,7 @@ function compareScoreArray(a: number[], b: number[]): number {
   return 0
 }
 
+// 返回0表示a与b相等；返回>0，b先排序；返回<0，a先排序
 export function comparePathParserScore(a: PathParser, b: PathParser): number {
   let i = 0
   const aScore = a.score
