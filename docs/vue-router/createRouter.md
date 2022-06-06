@@ -56,6 +56,11 @@ const matcher = createRouterMatcher(options.routes, options)
 const parseQuery = options.parseQuery || originalParseQuery
 const stringifyQuery = options.stringifyQuery || originalStringifyQuery
 const routerHistory = options.history
+if (__DEV__ && !routerHistory)
+  throw new Error(
+    'Provide the "history" option when calling "createRouter()":' +
+    ' https://next.router.vuejs.org/api/#history.'
+  )
 ```
 
 紧接着声明了一些全局守卫相关的变量，和一些关于`params`的处理方法，其中有关全局守卫的变量都是通过`useCallbacks`创建的，`params`相关方法通过`applyToParams`创建。
