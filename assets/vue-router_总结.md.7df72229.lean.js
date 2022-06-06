@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as t}from"./app.b8b247e7.js";var p="/blog/assets/router-flow.f810cc4a.png";const g='{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/\u603B\u7ED3.md"}',e={},o=t("",13),c=[o];function l(u,r,i,k,d,m){return a(),s("div",null,c)}var v=n(e,[["render",l]]);export{g as __pageData,v as default};
