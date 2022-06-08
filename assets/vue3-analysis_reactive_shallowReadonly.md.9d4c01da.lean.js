@@ -1,0 +1,1 @@
+import{_ as n,c as a,o as s,d as e}from"./app.2554483f.js";const y='{"title":"shallowReadonly","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/reactive/shallowReadonly.md"}',t={},o=e("",6),l=[o];function c(p,r,d,i,u,k){return s(),a("div",null,l)}var h=n(t,[["render",c]]);export{y as __pageData,h as default};
