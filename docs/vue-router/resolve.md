@@ -4,69 +4,151 @@
 返回路由地址的标准化版本。
 :::
 
-`resolve`接收两个参数：`rawLocation`、`currentLocation`（可选）。其中`rawLocation`是待转换的路由，`rawLocation`可以是个对象也可以是个字符串。`currentLocation`不传默认是`currentRoute`
+`resolve`接收两个参数：`rawLocation`、`currentLocation`（可选）。其中`rawLocation`是待转换的路由，`rawLocation`可以是个对象也可以是个字符串。`currentLocation`不传默认是`currentRoute`。
 
-当`rawLocation`为字符串时，调用`parseURL`解析字符串，`parseURL`方法返回一个`LocationNormalized`类型的对象，这个对象包含了`path`、`fullPath`、`hash`、`query`。
-
+在`resolve`中有是两个分支：
+- 如果`rawLocation`是`string`类型
+  调用`parseURL`解析`rawLocation`:
 ```ts
-const START_LOCATION_NORMALIZED: RouteLocationNormalizedLoaded = {
-  path: '/',
-  name: undefined,
-  params: {},
-  query: {},
-  hash: '',
-  fullPath: '/',
-  matched: [],
-  meta: {},
-  redirectedFrom: undefined,
-}
-const currentRoute = shallowRef<RouteLocationNormalizedLoaded>(
-  START_LOCATION_NORMALIZED
+const locationNormalized = parseURL(
+  parseQuery,
+  rawLocation,
+  currentLocation.path
 )
+```
+`parseURL`接收三个参数：`parseQuery`（一个query解析函数）、`location`（被解析的`location`）、`currentLocation`（当前的`location`）。
+```ts
+export function parseURL(
+  parseQuery: (search: string) => LocationQuery,
+  location: string,
+  currentLocation: string = '/'
+): LocationNormalized {
+  let path: string | undefined,
+    query: LocationQuery = {},
+    searchString = '',
+    hash = ''
 
-// ...
-if (typeof rawLocation === 'string') {
-  // 解析rawLocation
-  const locationNormalized = parseURL(
-    parseQuery,
-    rawLocation,
-    currentLocation.path
-  )
-  // 调用matcher.resolve获取rawLocation中的params、hash等信息
-  const matchedRoute = matcher.resolve(
-    { path: locationNormalized.path },
-    currentLocation
-  )
+  // location中?的位置
+  const searchPos = location.indexOf('?')
+  // location中#的位置，如果location中有?，在?之后找#
+  const hashPos = location.indexOf('#', searchPos > -1 ? searchPos : 0)
 
-  // 删除locationNormalized.fullPath中#前的任意字符
-  const href = routerHistory.createHref(locationNormalized.fullPath)
-  // 开发环境下进行友好提示
-  if (__DEV__) {
-    if (href.startsWith('//')) // href如果以//开头
-      warn(
-        `Location "${rawLocation}" resolved to "${href}". A resolved location cannot start with multiple slashes.`
-      )
-    else if (!matchedRoute.matched.length) { // 如果没有没配到的路由
-      warn(`No match found for location with path "${rawLocation}"`)
-    }
+  // 如果
+  if (searchPos > -1) {
+    // 从location中截取[0, searchPos)位置的字符串作为path
+    path = location.slice(0, searchPos)
+    // 从location截取含search的字符串，不包含hash部分
+    searchString = location.slice(
+      searchPos + 1,
+      hashPos > -1 ? hashPos : location.length
+    )
+    // 调用parseQuery生成query对象
+    query = parseQuery(searchString)
+  }
+  // 如果location中有hash
+  if (hashPos > -1) {
+    path = path || location.slice(0, hashPos)
+    // 从location中截取[hashPos, location.length)作为hash（包含#）
+    hash = location.slice(hashPos, location.length)
   }
 
-  // 返回一个新的对象
-  return assign(locationNormalized, matchedRoute, {
-    params: decodeParams(matchedRoute.params),
-    hash: decode(locationNormalized.hash),
-    redirectedFrom: undefined,
-    href,
-  })
+  // 解析以.开头的相对路径
+  path = resolveRelativePath(path != null ? path : location, currentLocation)
+  // empty path means a relative query or hash `?foo=f`, `#thing`
+
+  return {
+  	// fullPath = path + searchString + hash
+    fullPath: path + (searchString && '?') + searchString + hash,
+    path,
+    query,
+    hash,
+  }
 }
 ```
+来看下，相对路径的解析过程：
+```ts
+export function resolveRelativePath(to: string, from: string): string {
+  // 如果to以/开头，说明是个绝对路径，直接返回即可
+  if (to.startsWith('/')) return to
+  // 如果from不是以/开头，那么说明from不是绝对路径，也就无法推测出to的绝对路径，此时直接返回to
+  if (__DEV__ && !from.startsWith('/')) {
+    warn(
+      `Cannot resolve a relative location without an absolute path. Trying to resolve "${to}" from "${from}". It should look like "/${from}".`
+    )
+    return to
+  }
 
-如果`rawLocation`不是字符串的话，流程如下：
+  if (!to) return from
+  // 使用/分割from与to
+  const fromSegments = from.split('/')
+  const toSegments = to.split('/')
+
+  // 初始化position默认为fromSegments的最后一个索引
+  let position = fromSegments.length - 1
+  let toPosition: number
+  let segment: string
+
+  for (toPosition = 0; toPosition < toSegments.length; toPosition++) {
+    segment = toSegments[toPosition]
+    // 保证position不会小于0
+    if (position === 1 || segment === '.') continue
+    if (segment === '..') position--
+    else break
+  }
+
+  return (
+    fromSegments.slice(0, position).join('/') +
+    '/' +
+    toSegments
+      .slice(toPosition - (toPosition === toSegments.length ? 1 : 0))
+      .join('/')
+  )
+}
+```
+`to=cc`，`from=/aa/bb`，经过`resolveRelativePath`后：`/aa/cc`
+
+`to=cc`，`from=/aa/bb/`，经过`resolveRelativePath`后：`/aa/bb/cc`
+
+`to=./cc`，`from=/aa/bb`，经过`resolveRelativePath`后：`/aa/cc`
+
+`to=./cc`，`from=/aa/bb/`，经过`resolveRelativePath`后：`/aa/bb/cc`
+
+`to=../cc`，`from=/aa/bb`，经过`resolveRelativePath`后：`/aa`
+
+`to=../cc`，`from=/aa/bb/`，经过`resolveRelativePath`后：`/aa/cc`
+
+如果`from/`，`to=cc`、`to=./cc`、`to=../cc`、`to=../../cc`、`to=./../cc`、`to=.././cc`经过`resolveRelativePath`始终返回`/cc`
+
+回到`resolve`中，解析完`rawLocation`后，调用`matcher.resolve`
+```ts
+const matchedRoute = matcher.resolve(
+  { path: locationNormalized.path },
+  currentLocation
+)
+// 使用routerHistory.createHref创建href
+const href = routerHistory.createHref(locationNormalized.fullPath)
+```
+
+最后返回对象：
+```ts
+return assign(locationNormalized, matchedRoute, {
+  // 对params中的value进行decodeURIComponent
+  params:decodeParams(matchedRoute.params),
+  // 对hash进行decodeURIComponent
+  hash: decode(locationNormalized.hash),
+  redirectedFrom: undefined,
+  href,
+})
+```
+
+- `rawLocation`不是`string`类型
 
 ```ts
 let matcherLocation: MatcherLocationRaw
 
+// 如果rawLocation中有path属性
 if ('path' in rawLocation) {
+  // rawLocation中的params会被忽略
   if (
     __DEV__ &&
     'params' in rawLocation &&
@@ -95,7 +177,7 @@ if ('path' in rawLocation) {
   matcherLocation = assign({}, rawLocation, {
     params: encodeParams(rawLocation.params),
   })
-  // 当前位置的参数被解码，我们需要对它们进行编码以防匹配器合并参数
+  // 将当前位置的params编码 当前位置的参数被解码，我们需要对它们进行编码以防匹配器合并参数
   currentLocation.params = encodeParams(currentLocation.params)
 }
 
