@@ -4,6 +4,69 @@
 通过`useLink`可获取`router-link`跳转时的行为与信息，但并不会发生跳转行为。
 :::
 
+使用`useLink`可以自定义我们自己的`RouterLink`，如下面自定的`MyRouterLink`，如果是外部链接，我们需要让它新打开一个页面。
+
+```vue
+<template>
+  <a
+    v-if="isExternalLink"
+    v-bind="$attrs"
+    :class="classes"
+    :href="to"
+    target="_blank"
+  >
+    <slot />
+  </a>
+  <a
+    v-else
+    v-bind="$attrs"
+    :class="classes"
+    :href="href"
+    @click="navigate"
+  >
+    <slot />
+  </a>
+</template>
+
+<script lang="ts">
+export default {
+  name: 'MyRouterLink',
+}
+</script>
+
+<script lang="ts" setup>
+import { useLink, useRoute, RouterLink } from 'vue-router'
+import { computed } from 'vue'
+
+const props = defineProps({
+  // @ts-ignore
+  ...RouterLink.props
+})
+
+const { route, href, navigate, isActive, isExactActive  } = useLink(props)
+
+const isExternalLink= computed(() => typeof props.to === 'string' && props.to.startsWith('http'))
+
+const currentRoute = useRoute()
+
+const classes = computed(() => ({
+  'router-link-active':
+    isActive.value || currentRoute.path.startsWith(route.value.path),
+  'router-link-exact-active':
+    isExactActive.value || currentRoute.path === route.value.path,
+}))
+</script>
+```
+
+`MyRouterLink`使用：
+
+```html
+<my-router-link to="https://www.xxx.com">MyRouterLink External Link</my-router-link>
+<my-router-link to="/home">MyRouterLink /home</my-router-link>
+```
+
+源码：
+
 ```ts
 export function useLink(props: UseLinkOptions) {
   // router实例
