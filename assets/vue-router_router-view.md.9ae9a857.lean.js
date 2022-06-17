@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as p}from"./app.7389bade.js";const d='{"title":"<router-view\\\\>","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/router-view.md"}',t={},e=p("",11),o=[e];function c(l,u,r,i,k,b){return a(),s("div",null,o)}var f=n(t,[["render",c]]);export{d as __pageData,f as default};

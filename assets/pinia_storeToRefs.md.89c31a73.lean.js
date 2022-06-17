@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as e}from"./app.90a49249.js";const d='{"title":"storeToRefs","description":"","frontmatter":{},"headers":[],"relativePath":"pinia/storeToRefs.md"}',t={},p=e("",3),o=[p];function c(r,l,u,i,k,b){return a(),n("div",null,o)}var f=s(t,[["render",c]]);export{d as __pageData,f as default};

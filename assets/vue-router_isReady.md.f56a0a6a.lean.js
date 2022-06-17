@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as p}from"./app.7389bade.js";const b='{"title":"isReady","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/isReady.md"}',e={},t=p("",6),o=[t];function c(r,l,u,i,k,d){return a(),s("div",null,o)}var y=n(e,[["render",c]]);export{b as __pageData,y as default};
