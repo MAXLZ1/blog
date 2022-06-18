@@ -317,7 +317,7 @@ for (const key in setupStore) {
 
 接下来我们看下`wrapAction`是如何进行包装`function`类型上的`prop`。
 
-`wrapAction`首先返回一个函数，在这个函数中，首先触发`actionSubscriptions`中的函数，然后执行`action`函数，如果执行过程中出错，会执行`onErrorCallbackList`中的`errorCallback`，如果没有出错的话，执行`afterCallbackList`中的`afterCallback`，最后将`action`的返回结果`return`。
+`wrapAction`首先返回一个函数，在这个函数中，首先将`pinia`设置为`activePinia`，触发`actionSubscriptions`中的函数，然后执行`action`函数，如果执行过程中出错，会执行`onErrorCallbackList`中的`errorCallback`，如果没有出错的话，执行`afterCallbackList`中的`afterCallback`，最后将`action`的返回结果`return`。
 
 ```ts
 function wrapAction(name: string, action: _Method) {
@@ -582,6 +582,7 @@ function $patch(
   // 合并的相关信息
   let subscriptionMutation: SubscriptionCallbackMutation<S>
   // 是否触发状态修改后的回调，isListening代表异步触发，isSyncListening代表同步触发
+  // 此处先关闭回调的触发，防止修改store的过程中频繁触发回调
   isListening = isSyncListening = false
   if (__DEV__) {
     debuggerEvents = []
@@ -603,6 +604,7 @@ function $patch(
       events: debuggerEvents as DebuggerEvent[],
     }
   }
+  // 当合并完之后，将isListening、isSyncListening设置为true，意味着可以触发状态改变后的回调函数了
   const myListenerId = (activeListener = Symbol())
   nextTick().then(() => {
     if (activeListener === myListenerId) {
@@ -610,7 +612,7 @@ function $patch(
     }
   })
   isSyncListening = true
-  // 因为在修改pinia.state.value[$id]的过程中关闭了监听，所以需要手动触发订阅列表
+  // 因为在修改pinia.state.value[$id]的过程中关闭（isSyncListening与isListening）了监听，所以需要手动触发订阅列表
   triggerSubscriptions(
     subscriptions,
     subscriptionMutation,
@@ -660,7 +662,7 @@ function $subscribe(callback, options = {}) {
     () => stopWatcher()
   )
   const stopWatcher = scope.run(() =>
-    // 监听pinia.state.value[$id]，以触发callback，当使用$patch更新state时，不会触发下面的callback
+    // 监听pinia.state.value[$id]，以触发callback，当使用$patch更新state时，不会触发这里的callback
     watch(
       () => pinia.state.value[$id] as UnwrapRef<S>,
       (state) => {
@@ -790,4 +792,34 @@ function createOptionsStore<
 在`createOptionsStore`中会根据传入参数构造一个`setup`函数，然后通过`createSetupStore`创建一个`store`，并重写`store.$reset`方法，最后返回`store`。
 
 这个`setup`函数中会将`state()`的返回值赋值给`pinia.state.value[id]`，然后将`pinia.state.value[id]`进行`toRefs`，得到`localState`，最后将处理后的`getters`和`actions`都合并到`localState`中，将其返回。对于`getters`的处理：将每个`getter`函数都转成一个计算属性。
+
+## 总结
+
+`defineStore`返回一个`useStore`函数，通过执行`useStore`可以获取对应的`store`。调用`useStore`时我们并没有传入`id`，为什么能准确获取`store`呢？这是因为`useStore`是个闭包，在执行`useStore`执行过程中会自动获取`id`。
+
+获取`store`的过程：
+
+1. 首先获取组件实例
+2. 使用`inject(piniaSymbol)`获取`pinia`实例
+3. 判断`pinia._s`中是否有对应`id`的键，如果有直接取对应的值作为`store`，如果没有则创建`store`
+
+`store`创建流程分两种：`setup`方式与`options`方式
+
+`setup`方式：
+1. 首先在`pinia.state.value`中添加键为`$id`的空对象，以便后续赋值
+2. 使用`reactive`声明一个响应式对象`store`
+3. 将`store`存至`pinia._s`中
+4. 执行`setup`获取返回值`setupStore`
+5. 遍历`setupStore`的键值，如果值是`ref`（不是`computed`）或`reactive`，将键值添加到`pinia.state.value[$id]`中；如果值时`function`，首先将值使用`wrapAction`包装，然后用包装后的`function`替换`setupStore`中对应的值
+6. 将`setupStore`合并到`store`中
+7. 拦截`store.$state`，使`get`操作可以正确获取`pinia.state.value[$id]`，`set`操作使用`this.$patch`更新
+8. 调用`pinia._p`中的扩展函数，扩展`store`
+
+`options`方式：
+1. 从`options`中提取`state`、`getter`、`actions`
+2. 构建`setup`函数，在`setup`函数中会将`getter`处理成计算属性
+3. 使用`setup`方式创建`store`
+4. 重写`store.$reset`
+
+
 
