@@ -36,6 +36,11 @@ export default defineConfig({
     },
     nav: [
       {
+        text: 'JavaScript',
+        link: '/javascript/void',
+        activeMatch: '^/$|^/javascript/',
+      },
+      {
         text: '源码解析',
         items: [
           { text: 'Vue3源码解析', link: '/vue3-analysis/structure', activeMatch: '^/$|^/vue3-analysis/' },
@@ -46,8 +51,9 @@ export default defineConfig({
     ],
     sidebar: {
       '/vue3-analysis': getVueSidebar(),
-      '/vue-router': getVueRouterSiderbar(),
-      '/pinia': getPiniaSidebar()
+      '/vue-router': getVueRouterSidebar(),
+      '/pinia': getPiniaSidebar(),
+      '/javascript': getJavaScriptSidebar(),
     }
   },
   markdown: {
@@ -111,7 +117,7 @@ function getVueSidebar() {
   ]
 }
 
-function getVueRouterSiderbar() {
+function getVueRouterSidebar() {
   return [
     {
       text: '前言',
@@ -262,6 +268,15 @@ function getPiniaSidebar() {
           link: '/pinia/mapWritableState',
         },
       ]
+    },
+  ]
+}
+
+function getJavaScriptSidebar() {
+  return [
+    {
+      text: 'void',
+      link: '/javascript/void'
     },
   ]
 }
