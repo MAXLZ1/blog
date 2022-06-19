@@ -4,6 +4,23 @@
 关于为什么要有`effectScope`可以参考[RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md)
 :::
 
+## 使用示例
+
+```ts
+const counter = ref(1)
+const scope = effectScope()
+scope.run(() => {
+  const doubled = computed(() => counter.value * 2)
+
+  watch(doubled, () => console.log(doubled.value))
+
+  watchEffect(() => console.log('Count: ', doubled.value))
+})
+
+// 处理掉当前作用域内的所有 effect
+scope.stop()
+```
+
 `effectScope`接收一个`boolean`值，如果传`true`代表游离模式，那么创建的`scope`不会被父`scope`收集，通俗来讲，如果是游离模式，那么`scope`之间是不存在父子关系的，每一个`scope`都是独立的。
 
 ```ts
