@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as e}from"./app.4c2463eb.js";const h='{"title":"createWebHashHistory","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/createWebHashHistory.md"}',t={},o=e("",9),p=[o];function c(l,r,i,u,d,k){return a(),n("div",null,p)}var m=s(t,[["render",c]]);export{h as __pageData,m as default};
