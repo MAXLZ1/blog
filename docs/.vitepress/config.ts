@@ -79,6 +79,10 @@ function getVueSidebar() {
           text: 'effectScope',
           link: '/vue3-analysis/reactivity/effectScope'
         },
+        {
+          text: 'computed',
+          link: '/vue3-analysis/reactivity/computed'
+        },
       ]
     },
     // {
@@ -106,7 +110,6 @@ function getVueSidebar() {
     //     { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
     //   ]
     // },
-    // { text: 'computed', link: '/vue3-analysis/computed' },
     // { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
     // {
     //   text: 'watch',
