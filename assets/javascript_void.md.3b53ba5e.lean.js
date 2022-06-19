@@ -1,0 +1,1 @@
+import{_ as n,c as s,o as a,d as e}from"./app.2233c548.js";const m='{"title":"void","description":"","frontmatter":{},"headers":[{"level":2,"title":"undefined","slug":"undefined"}],"relativePath":"javascript/void.md"}',p={},o=e("",28),c=[o];function t(l,i,u,d,r,k){return a(),s("div",null,c)}var v=n(p,[["render",t]]);export{m as __pageData,v as default};

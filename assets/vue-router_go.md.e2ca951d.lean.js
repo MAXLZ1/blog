@@ -1,1 +1,0 @@
-import{_ as n,c as s,o as a,d as p}from"./app.90a49249.js";var t="/blog/assets/go.70f212bf.png";const f='{"title":"go","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/go.md"}',e={},o=p("",15),c=[o];function l(r,u,i,k,b,m){return a(),s("div",null,c)}var y=n(e,[["render",l]]);export{f as __pageData,y as default};

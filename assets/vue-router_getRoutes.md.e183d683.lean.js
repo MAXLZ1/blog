@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as e}from"./app.2233c548.js";const m='{"title":"getRoutes","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/getRoutes.md"}',t={},o=e("",4),c=[o];function p(r,u,i,l,d,_){return a(),n("div",null,c)}var h=s(t,[["render",p]]);export{m as __pageData,h as default};
