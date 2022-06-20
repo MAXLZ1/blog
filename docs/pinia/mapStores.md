@@ -33,8 +33,6 @@ export default {
 
 ## 源码分析
 
-`mapStores`可接收多个`useStore`函数。
-
 ```ts
 export function mapStores<Stores extends any[]>(
   ...stores: [...Stores]
@@ -67,4 +65,6 @@ export function mapStores<Stores extends any[]>(
 }
 ```
 
-首先`mapStores`会对参数进行校验，如果传入的第一个参数为数组，那么在开发环境下会进行提示，并将数组中的第一个值赋给`stores`，以保证开发环境下能够运行。然后返回一个对象，该对象通过`stores.reduce`生成，对象的`key`值是由`useStore.$id + mapStoreSuffix`组成，对应的`value`适合函数，在函数中会调用`useStore(this.$pinia)`，返回其结果。
+`mapStores`可接收多个`useStore`函数。
+
+`mapStores`会对参数进行校验，如果传入的第一个参数为数组，那么在开发环境下会进行提示，并将数组中的第一个值赋给`stores`，以保证开发环境下能够运行。然后返回一个对象，该对象通过`stores.reduce`生成，对象的`key`值是由`useStore.$id + mapStoreSuffix`组成，对应的`value`是个函数，在函数中会调用`useStore(this.$pinia)`，返回其结果。

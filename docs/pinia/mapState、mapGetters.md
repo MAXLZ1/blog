@@ -1,9 +1,9 @@
-# mapState、mapActions
+# mapState、mapGetters
 
 ::: tip
-使用`mapState`，向组件注入`store.state`。
+使用`mapState`，获取`store.state`及`state.getter`。
 
-使用`mapAction`，向组件注入`store.actions`。
+`mapGetters`同`mapState`。
 :::
 
 ## 使用
@@ -18,15 +18,9 @@ export default {
     })
   },
   created() {
-    this.add()
-    console.log(this.n) // 2
-    console.log(this.doubleN) // 4
+    console.log(this.n)
+    console.log(this.doubleN)
   },
-  methods: {
-    ...mapActions(useCounterStore, {
-      add: 'increment',
-    })
-  }
 }
 
 export default {
@@ -34,13 +28,9 @@ export default {
     ...mapState(useCounterStore, [ 'count', 'double' ])
   },
   created() {
-    this.add()
-    console.log(this.count) // 2
-    console.log(this.double) // 4
+    console.log(this.count) 
+    console.log(this.double) 
   },
-  methods: {
-    ...mapActions(useCounterStore, [ 'add' ])
-  }
 }
 ```
 
@@ -82,4 +72,4 @@ export const mapGetters = mapState
 
 `mapState`会返回一个对象，这个对象的`key`值是通过`keysOrMapper`获得的。如果传入`keysOrMapper`是数组，返回对象的`key`就是`keysOrMapper`中的元素，`key`对应的值是个获取`store[key]`的函数。 如果`keysOrMapper`是个对象，返回对象的`key`是`keysOrMapper`中的`key`，`key`对应的值根据`keysOrMapper[key]`的类型有所区别，如果`keysOrMapper[key]`是`function`，返回结果中对应`key`的值是一个返回`keysOrMapper[key].call(this, store)`的函数，否则`key`对应的是个返回`store[keysOrMapper[key]]`的函数。
 
-`mapActions`同`mapState`。
+`mapGetters`同`mapState`。
