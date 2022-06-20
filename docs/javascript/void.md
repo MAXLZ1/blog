@@ -36,7 +36,7 @@ const res = print(1)
 console.log(res) // undefined
 ```
 
-# void
+## void
 
 MDN：[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void)
 
