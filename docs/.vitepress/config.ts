@@ -83,6 +83,14 @@ function getVueSidebar() {
           text: 'computed',
           link: '/vue3-analysis/reactivity/computed'
         },
+        {
+          text: 'watch',
+          link: '/vue3-analysis/reactivity/watch'
+        },
+        {
+          text: 'scheduler',
+          link: '/vue3-analysis/reactivity/scheduler'
+        },
       ]
     },
     // {
@@ -263,8 +271,12 @@ function getPiniaSidebar() {
           link: '/pinia/mapStores',
         },
         {
-          text: 'mapState、mapActions',
-          link: '/pinia/mapState、mapActions',
+          text: 'mapState、mapGetters',
+          link: '/pinia/mapState、mapGetters',
+        },
+        {
+          text: 'mapActions',
+          link: '/pinia/mapActions',
         },
         {
           text: 'mapWritableState',
