@@ -1,4 +1,4 @@
-import DefaultTheme from 'vitepress/dist/client/theme-default'
+import { VPTheme } from '@vue/theme'
 import './custom.css'
 
-export default DefaultTheme
+export default VPTheme

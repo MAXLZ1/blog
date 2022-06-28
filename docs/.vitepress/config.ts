@@ -1,6 +1,8 @@
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
+import baseConfig from '@vue/theme/config'
 
-export default defineConfig({
+export default defineConfigWithTheme({
+  extends: baseConfig,
   base: '/blog/',
   title: '我的博客',
   lastUpdated: false,
@@ -50,23 +52,31 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      '/vue3-analysis': getVueSidebar(),
-      '/vue-router': getVueRouterSidebar(),
-      '/pinia': getPiniaSidebar(),
-      '/javascript': getJavaScriptSidebar(),
-    }
+      '/vue3-analysis/': getVueSidebar(),
+      '/vue-router/': getVueRouterSidebar(),
+      '/pinia/': getPiniaSidebar(),
+      '/javascript/': getJavaScriptSidebar(),
+    },
   },
   markdown: {
-    lineNumbers: true
+    lineNumbers: false
   },
 })
 
 function getVueSidebar() {
   return [
-    { text: '源码目录结构', link: '/vue3-analysis/structure' },
+    {
+      text: '源码目录结构',
+      items: [
+        {
+          text: '源码目录结构',
+          link: '/vue3-analysis/structure'
+        }
+      ]
+    },
     {
       text: '响应系统',
-      children: [
+      items: [
         {
           text: '副作用函数与响应式数据',
           link: '/vue3-analysis/reactivity/副作用函数与响应式数据'
@@ -91,21 +101,25 @@ function getVueSidebar() {
           text: 'scheduler',
           link: '/vue3-analysis/reactivity/scheduler'
         },
+        {
+          text: 'reactive(Object)',
+          link: '/vue3-analysis/reactivity/reactive-object'
+        },
+        // {
+        //   text: 'reactive(Collection)',
+        //   link: '/vue3-analysis/reactivity/reactive-collection'
+        // },
+        // { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
+        // { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
+        // { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
+        // { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
+        // { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
       ]
     },
-    // {
-    //   text: 'reactive',
-    //   children: [
-    //     { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
-    //     { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
-    //     { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
-    //     { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
-    //     { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
-    //   ]
-    // },
+
     // {
     //   text: 'refs',
-    //   children: [
+    //   items: [
     //     { text: 'ref',  link: '/vue3-analysis/refs/ref' },
     //     { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
     //     { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
@@ -113,7 +127,7 @@ function getVueSidebar() {
     // },
     // {
     //   text: 'effect',
-    //   children: [
+    //   items: [
     //     { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
     //     { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
     //   ]
@@ -121,7 +135,7 @@ function getVueSidebar() {
     // { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
     // {
     //   text: 'watch',
-    //   children: [
+    //   items: [
     //     { text: 'watch', link: '/vue3-analysis/watch/watch' },
     //   ]
     // },
@@ -132,35 +146,60 @@ function getVueRouterSidebar() {
   return [
     {
       text: '前言',
-      link: '/vue-router/preface'
+      items: [
+        {
+          text: '前言',
+          link: '/vue-router/preface'
+        }
+      ]
     },
     {
-      text: 'app.use(router)',
-      link: '/vue-router/router-install'
+      text: 'Install',
+      items: [
+        {
+          text: 'Install',
+          link: '/vue-router/router-install'
+        },
+      ]
     },
     {
-      text: 'createWebHistory',
-      link: '/vue-router/createWebHistory'
-    },
-    {
-      text: 'createWebHashHistory',
-      link: '/vue-router/createWebHashHistory'
-    },
-    {
-      text: 'createMemoryHistory',
-      link: '/vue-router/createMemoryHistory'
+      text: 'History',
+      items: [
+        {
+          text: 'createWebHistory',
+          link: '/vue-router/createWebHistory'
+        },
+        {
+          text: 'createWebHashHistory',
+          link: '/vue-router/createWebHashHistory'
+        },
+        {
+          text: 'createMemoryHistory',
+          link: '/vue-router/createMemoryHistory'
+        },
+      ]
     },
     {
       text: 'routerMatcher',
-      link: '/vue-router/routerMatcher'
+      items: [
+        {
+          text: 'routerMatcher',
+          link: '/vue-router/routerMatcher'
+        },
+      ]
     },
     {
       text: 'createRouter',
-      link: '/vue-router/createRouter',
+      items: [
+        {
+          text: 'createRouter',
+          link: '/vue-router/createRouter',
+        },
+      ]
     },
     {
       text: 'router方法',
-      children: [
+      items: [
         {
           text: 'addRoute',
           link: '/vue-router/addRoute'
@@ -209,7 +248,7 @@ function getVueRouterSidebar() {
     },
     {
       text: 'Composition API',
-      children: [
+      items: [
         {
           text: '组件内导航守卫',
           link: '/vue-router/组件内导航守卫'
@@ -226,7 +265,7 @@ function getVueRouterSidebar() {
     },
     {
       text: '路由组件',
-      children: [
+      items: [
         {
           text: 'router-link',
           link: '/vue-router/router-link',
@@ -239,7 +278,12 @@ function getVueRouterSidebar() {
     },
     {
       text: '总结',
-      link: '/vue-router/总结'
+      items: [
+        {
+          text: '总结',
+          link: '/vue-router/总结'
+        }
+      ]
     }
   ]
 }
@@ -248,24 +292,44 @@ function getPiniaSidebar() {
   return [
     {
       text: '前言',
-      link: '/pinia/preface'
+      items: [
+        {
+          text: '前言',
+          link: '/pinia/preface'
+        },
+      ]
     },
     {
       text: 'createPinia',
-      link: '/pinia/createPinia'
+      items: [
+        {
+          text: 'createPinia',
+          link: '/pinia/createPinia'
+        },
+      ]
     },
     {
       text: 'defineStore',
-      link: '/pinia/defineStore'
+      items: [
+        {
+          text: 'defineStore',
+          link: '/pinia/defineStore'
+        },
+      ]
     },
     {
       text: 'storeToRefs',
-      link: '/pinia/storeToRefs'
+      items: [
+        {
+          text: 'storeToRefs',
+          link: '/pinia/storeToRefs'
+        },
+      ]
     },
     {
       text: 'api without setup()',
       link: '/pinia/mapHelper',
-      children: [
+      items: [
         {
           text: 'mapStores',
           link: '/pinia/mapStores',
@@ -290,8 +354,13 @@ function getPiniaSidebar() {
 function getJavaScriptSidebar() {
   return [
     {
-      text: 'void',
-      link: '/javascript/void'
-    },
+      text: 'JavasSript',
+      items: [
+        {
+          text: 'void',
+          link: '/javascript/void'
+        },
+      ]
+    }
   ]
 }
