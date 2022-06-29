@@ -105,11 +105,10 @@ function getVueSidebar() {
           text: 'reactive(Object)',
           link: '/vue3-analysis/reactivity/reactive-object'
         },
-        // {
-        //   text: 'reactive(Collection)',
-        //   link: '/vue3-analysis/reactivity/reactive-collection'
-        // },
-        // { text: 'reactive', link: '/vue3-analysis/reactive/reactive' },
+        {
+          text: 'reactive(Collection)',
+          link: '/vue3-analysis/reactivity/reactive-collection'
+        },
         // { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
         // { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
         // { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
