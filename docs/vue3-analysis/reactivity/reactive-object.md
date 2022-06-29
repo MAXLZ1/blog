@@ -618,5 +618,72 @@ function ownKeys(target: object): (string | symbol)[] {
 }
 ```
 
+### 其他reactive
+
+除了`reactive`，`readonly`、`shallowReadonly`、`shallowReactive`均是通过`createReactiveObject`创建的。不同是传递的参数不同。
+
+```ts
+export function readonly<T extends object>(
+  target: T
+): DeepReadonly<UnwrapNestedRefs<T>> {
+  return createReactiveObject(
+    target,
+    true,
+    readonlyHandlers,
+    readonlyCollectionHandlers,
+    readonlyMap
+  )
+}
+
+export function shallowReadonly<T extends object>(target: T): Readonly<T> {
+  return createReactiveObject(
+    target,
+    true,
+    shallowReadonlyHandlers,
+    shallowReadonlyCollectionHandlers,
+    shallowReadonlyMap
+  )
+}
+
+export function shallowReactive<T extends object>(
+  target: T
+): ShallowReactive<T> {
+  return createReactiveObject(
+    target,
+    false,
+    shallowReactiveHandlers,
+    shallowCollectionHandlers,
+    shallowReactiveMap
+  )
+}
+```
+
+这里主要看一下`readonlyHandlers`的实现。
+
+```ts
+export const readonlyHandlers: ProxyHandler<object> = {
+  get: readonlyGet,
+  set(target, key) {
+    if (__DEV__) {
+      warn(
+        `Set operation on key "${String(key)}" failed: target is readonly.`,
+        target
+      )
+    }
+    return true
+  },
+  deleteProperty(target, key) {
+    if (__DEV__) {
+      warn(
+        `Delete operation on key "${String(key)}" failed: target is readonly.`,
+        target
+      )
+    }
+    return true
+  }
+}
+```
+
+因为被`readonly`处理的数据不会被修改，所以所有的修改操作都不会被允许，修改操作不会进行意味着也就不会进行依赖的触发，对应地也就不需要进行依赖的收集，所以`ownKeys`、`has`也就没必要拦截了。
 
 关于集合的处理将在后面文章继续分析。

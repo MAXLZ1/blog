@@ -109,10 +109,7 @@ function getVueSidebar() {
           text: 'reactive(Collection)',
           link: '/vue3-analysis/reactivity/reactive-collection'
         },
-        // { text: 'shallowReactive', link: '/vue3-analysis/reactive/shallowReactive' },
-        // { text: 'readonly', link: '/vue3-analysis/reactive/readonly' },
-        // { text: 'shallowReadonly', link: '/vue3-analysis/reactive/shallowReadonly' },
-        // { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
+        { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
       ]
     },
 
