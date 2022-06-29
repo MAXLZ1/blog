@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as l}from"./app.2fea60d5.js";var p="/blog/assets/trigger.2f8a36ee.png";const d='{"title":"trigger","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/effect/\u89E6\u53D1\u4F9D\u8D56.md"}',o={},e=l("",11),c=[e];function t(r,F,y,D,A,i){return a(),n("div",null,c)}var f=s(o,[["render",t]]);export{d as __pageData,f as default};
