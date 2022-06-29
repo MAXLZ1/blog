@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,d as l}from"./app.e652fc7f.js";const C='{"title":"isReady","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/isReady.md"}',p={},o=l("",6),e=[o];function t(r,c,y,F,D,A){return n(),a("div",null,e)}var d=s(p,[["render",t]]);export{C as __pageData,d as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as l}from"./app.2c791326.js";var p="/blog/assets/watch.da22bcca.png";const f='{"title":"watch","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/watch/watch.md"}',o={},e=l("",28),c=[e];function t(r,F,y,D,A,C){return a(),n("div",null,c)}var d=s(o,[["render",t]]);export{f as __pageData,d as default};

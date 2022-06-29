@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,d as o}from"./app.e652fc7f.js";const D='{"title":"useRoute\u3001useRouter","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/useRoute\u3001useRouter.md"}',e={},l=o("",5),p=[l];function t(c,r,i,y,F,u){return n(),a("div",null,p)}var A=s(e,[["render",t]]);export{D as __pageData,A as default};
