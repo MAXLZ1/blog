@@ -1,36 +1,22 @@
 import { defineConfigWithTheme } from 'vitepress'
-import baseConfig from '@vue/theme/config'
+import baseConfig from 'vitepress-theme/config'
+import type { Config as ThemeConfig } from 'vitepress-theme'
 
-export default defineConfigWithTheme({
+export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
   base: '/blog/',
   title: '我的博客',
   lastUpdated: false,
-  head: [
-    [ 'script', { src: 'https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js' } ],
-    [ 'script', {}, `window.addEventListener("load", function (event) {
-      let observer = new MutationObserver(() => {
-        mediumZoom(document.querySelectorAll("img"), {
-          background: "rgba(0, 0, 0, 0.5)",
-        });
-      });
-      let options = {
-        childList: true,
-        subtree: true,
-      };
-      observer.observe(document.getElementById("app"), options);
-    });`
-    ]
-  ],
+  lang: 'z',
   themeConfig: {
-    repo: 'MAXLZ1/blog',
-    repoLabel: 'Github',
-    editLinks: true,
-    docsRepo: 'MAXLZ1/blog',
-    docsDir: 'docs',
-    docsBranch: 'main',
-    editLinkText: "纠正文档",
-    lastUpdated: '上次更新',
+    // repo: 'MAXLZ1/blog',
+    // repoLabel: 'Github',
+    // editLinks: true,
+    // docsRepo: 'MAXLZ1/blog',
+    // docsDir: 'docs',
+    // docsBranch: 'main',
+    // editLinkText: "纠正文档",
+    // lastUpdated: '上次更新',
     algolia: {
       appId: 'M5IBJH6J62',
       apiKey: '4ca33066d2f74526b478fa9d236485f1',
@@ -109,18 +95,14 @@ function getVueSidebar() {
           text: 'reactive(Collection)',
           link: '/vue3-analysis/reactivity/reactive-collection'
         },
-        { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
+        {
+          text: 'ref',
+          link: '/vue3-analysis/reactivity/ref'
+        },
+        // { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
       ]
     },
 
-    // {
-    //   text: 'refs',
-    //   items: [
-    //     { text: 'ref',  link: '/vue3-analysis/refs/ref' },
-    //     { text: 'shallowRef',  link: '/vue3-analysis/refs/shallowRef' },
-    //     { text: 'customRef',  link: '/vue3-analysis/refs/customRef' },
-    //   ]
-    // },
     // {
     //   text: 'effect',
     //   items: [

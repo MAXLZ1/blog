@@ -1,4 +1,3 @@
-import { VPTheme } from '@vue/theme'
-import './custom.css'
+import { VPTheme } from 'vitepress-theme'
 
 export default VPTheme
