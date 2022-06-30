@@ -1,1 +1,0 @@
-import{_ as s,c as a,o,d as e}from"./app.2fea60d5.js";const A='{"title":"replace","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/replace.md"}',n={},p=e("",4),l=[p];function c(t,r,F,y,d,i){return o(),a("div",null,l)}var _=s(n,[["render",c]]);export{A as __pageData,_ as default};

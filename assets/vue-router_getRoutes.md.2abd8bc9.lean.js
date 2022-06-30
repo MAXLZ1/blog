@@ -1,1 +1,0 @@
-import{_ as s,c as e,o as a,d as o}from"./app.2fea60d5.js";const u='{"title":"getRoutes","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/getRoutes.md"}',t={},n=o("",4),l=[n];function p(c,r,d,i,y,F){return a(),e("div",null,l)}var D=s(t,[["render",p]]);export{u as __pageData,D as default};

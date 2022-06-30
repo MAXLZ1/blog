@@ -1,1 +1,0 @@
-import{_ as s,c as a,o,d as e}from"./app.2fea60d5.js";var n="/blog/assets/removeRoute.b5dfb474.png";const A='{"title":"removeRoute","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/removeRoute.md"}',l={},p=e("",7),t=[p];function r(c,F,y,D,i,d){return o(),a("div",null,t)}var u=s(l,[["render",r]]);export{A as __pageData,u as default};

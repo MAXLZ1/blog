@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,d as l}from"./app.2fea60d5.js";var o="/blog/assets/push.40cb417d.png";const d='{"title":"push","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/push.md"}',p={},e=l("",47),t=[e];function c(r,F,y,D,A,C){return a(),n("div",null,t)}var u=s(p,[["render",c]]);export{d as __pageData,u as default};
