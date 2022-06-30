@@ -99,6 +99,10 @@ function getVueSidebar() {
           text: 'ref',
           link: '/vue3-analysis/reactivity/ref'
         },
+        {
+          text: '响应式API：工具函数',
+          link: '/vue3-analysis/reactivity/utils'
+        },
         // { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
       ]
     },
