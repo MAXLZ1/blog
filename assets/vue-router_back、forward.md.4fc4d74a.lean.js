@@ -1,0 +1,1 @@
+import{_ as s,c as a,o,d as n}from"./app.67bd94b2.js";const i=JSON.parse('{"title":"back\u3001forward","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/back\u3001forward.md"}'),e={name:"vue-router/back\u3001forward.md"},p=n("",4),l=[p];function c(r,t,d,A,y,D){return o(),a("div",null,l)}var F=s(e,[["render",c]]);export{i as __pageData,F as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,d as l}from"./app.67bd94b2.js";const i=JSON.parse('{"title":"useLink","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/useLink.md"}'),p={name:"vue-router/useLink.md"},o=l("",11),e=[o];function t(c,r,F,y,D,A){return a(),n("div",null,e)}var u=s(p,[["render",t]]);export{i as __pageData,u as default};
