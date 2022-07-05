@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as s,i as o}from"./app.c97683e1.js";const _=JSON.parse('{"title":"hasRoute","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/hasRoute.md"}'),t={name:"vue-router/hasRoute.md"},c=o("",5),n=[c];function r(p,l,d,h,i,u){return a(),s("div",null,n)}var y=e(t,[["render",r]]);export{_ as __pageData,y as default};

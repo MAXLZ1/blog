@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as e,i as o}from"./app.c97683e1.js";const A=JSON.parse('{"title":"replace","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/replace.md"}'),n={name:"vue-router/replace.md"},p=o("",4),l=[p];function c(t,r,F,y,i,d){return a(),e("div",null,l)}var _=s(n,[["render",c]]);export{A as __pageData,_ as default};
