@@ -24,6 +24,11 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     nav: [
       {
+        text: 'HTML',
+        link: '/html/svg/feTurbulence',
+        activeMatch: '^/$|^/html/',
+      },
+      {
         text: 'JavaScript',
         link: '/javascript/void',
         activeMatch: '^/$|^/javascript/',
@@ -42,6 +47,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       '/vue-router/': getVueRouterSidebar(),
       '/pinia/': getPiniaSidebar(),
       '/javascript/': getJavaScriptSidebar(),
+      '/css/': getCSSSidebar(),
+      '/html/': getHTMLSidebar(),
     },
   },
   markdown: {
@@ -336,7 +343,7 @@ function getPiniaSidebar() {
 function getJavaScriptSidebar() {
   return [
     {
-      text: 'JavasSript',
+      text: 'JavasScript',
       items: [
         {
           text: 'void',
@@ -344,5 +351,28 @@ function getJavaScriptSidebar() {
         },
       ]
     }
+  ]
+}
+
+function getCSSSidebar() {
+  return [
+    {
+      text: 'CSS',
+      items: []
+    },
+  ]
+}
+
+function getHTMLSidebar() {
+  return [
+    {
+      text: 'SVG',
+      items: [
+        {
+          text: 'feTurbulence滤镜',
+          link: '/html/svg/feTurbulence'
+        }
+      ]
+    },
   ]
 }
