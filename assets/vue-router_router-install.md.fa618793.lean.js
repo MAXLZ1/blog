@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.559be76c.js";const i=JSON.parse('{"title":"app.use(router)","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/router-install.md"}'),p={name:"vue-router/router-install.md"},o=l("",9),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}var u=s(p,[["render",t]]);export{i as __pageData,u as default};

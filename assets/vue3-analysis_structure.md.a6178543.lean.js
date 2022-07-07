@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,d as e}from"./app.559be76c.js";const u=JSON.parse('{"title":"\u6E90\u7801\u76EE\u5F55","description":"","frontmatter":{},"headers":[],"relativePath":"vue3-analysis/structure.md"}'),p={name:"vue3-analysis/structure.md"},l=e("",3),c=[l];function o(t,r,i,A,C,d){return a(),n("div",null,c)}var m=s(p,[["render",o]]);export{u as __pageData,m as default};
