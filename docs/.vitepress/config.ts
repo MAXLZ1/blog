@@ -373,6 +373,10 @@ function getHTMLSidebar() {
           link: '/html/svg/coordinate-system'
         },
         {
+          text: '基本图形',
+          link: '/html/svg/graphics'
+        },
+        {
           text: 'feTurbulence滤镜',
           link: '/html/svg/feTurbulence'
         },
