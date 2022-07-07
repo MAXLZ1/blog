@@ -377,6 +377,10 @@ function getHTMLSidebar() {
           link: '/html/svg/graphics'
         },
         {
+          text: '分组和引用对象',
+          link: '/html/svg/group-and-quote.md'
+        },
+        {
           text: 'feTurbulence滤镜',
           link: '/html/svg/feTurbulence'
         },

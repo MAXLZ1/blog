@@ -8,7 +8,7 @@
 ```
 
 ## 为视口指定用户坐标
-使用`viewBox`指定用户坐标系。语法`viewBox: <min-x> <min-y> <width> <height>`
+使用`viewBox`指定用户坐标系。语法`viewBox: <min-x> <min-y> <width> <height>`。在`svg`中向右为`x`轴正方向，向下为`y`轴正方向。
 
 ```html
 <svg width="300" height="300" viewBox="0 0 300 300"></svg>
