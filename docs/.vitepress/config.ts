@@ -369,9 +369,17 @@ function getHTMLSidebar() {
       text: 'SVG',
       items: [
         {
+          text: '坐标系统',
+          link: '/html/svg/coordinate-system'
+        },
+        {
           text: 'feTurbulence滤镜',
           link: '/html/svg/feTurbulence'
-        }
+        },
+        // {
+        //   text: 'feDisplacementMap滤镜',
+        //   link: '/html/svg/feDisplacementMap'
+        // },
       ]
     },
   ]
