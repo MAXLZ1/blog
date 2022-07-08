@@ -397,6 +397,10 @@ function getHTMLSidebar() {
           link: '/html/svg/transform.md'
         },
         {
+          text: '路径',
+          link: '/html/svg/path.md'
+        },
+        {
           text: 'feTurbulence滤镜',
           link: '/html/svg/feTurbulence'
         },

@@ -1,5 +1,5 @@
 <template>
-  <svg :width="width" :height="height" :viewBox="`0 0 ${width} ${height}`" xmlns="http://www.w3.org/2000/svg">
+  <svg :width="width" :height="height" :viewBox="viewBox || `${origin} ${width} ${height}`" xmlns="http://www.w3.org/2000/svg">
     <!-- X axis -->
     <line
       v-for="index in columns"
@@ -44,10 +44,17 @@ const props = defineProps({
     type: Number,
     default: 10.
   },
+  origin: {
+    type: String,
+    default: '0 0'
+  },
+  viewBox: {
+    type: String,
+  }
 })
 
 const lineStyle = {
-  stroke: '#000000'
+  stroke: '#b0b0b0'
 }
 
 const columns = computed(() => props.width / props.split + 1)
