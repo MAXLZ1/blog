@@ -1,6 +1,9 @@
 import { defineConfigWithTheme } from 'vitepress'
 import baseConfig from 'vitepress-theme/config'
 import type { Config as ThemeConfig } from 'vitepress-theme'
+import mathjax3 from 'markdown-it-mathjax3'
+
+const customElements = ['mjx-container']
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
@@ -52,8 +55,18 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
   },
   markdown: {
-    lineNumbers: false
+    lineNumbers: false,
+    config: (md) => {
+      md.use(mathjax3)
+    }
   },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => customElements.includes(tag)
+      }
+    }
+  }
 })
 
 function getVueSidebar() {
@@ -317,7 +330,6 @@ function getPiniaSidebar() {
     },
     {
       text: 'api without setup()',
-      link: '/pinia/mapHelper',
       items: [
         {
           text: 'mapStores',
@@ -379,6 +391,10 @@ function getHTMLSidebar() {
         {
           text: '分组和引用对象',
           link: '/html/svg/group-and-quote.md'
+        },
+        {
+          text: '坐标系统的变换',
+          link: '/html/svg/transform.md'
         },
         {
           text: 'feTurbulence滤镜',
