@@ -303,7 +303,7 @@ console.log(cValue.value) // 2
 
 `computed`如何重新计算？
 
-首先在第一次获取计算属性的值的过程中会进行依赖的收集，假设计算属性的计算与响应式对象的a、b两个属性有关，那么会将`computed`中生成的`ReactiveEffect`实例收集到`targetMap[obj].a`、`targetMap[obj].b`中，一旦`a`或`b`属性变化了，会触发依赖，而在依赖的触发过程中会执行调度函数，在调度函数中会会将脏数据的标识`_dirty`设置为`true`，并触发计算属性的依赖。那么在下一次使用到计算属性的话，由于`_dirty`为`true`，便会调用计算属性中的`effect.run`方法重新计算值。
+首先在第一次获取计算属性的值的过程中会进行依赖的收集，假设计算属性的计算与响应式对象的a、b两个属性有关，那么会将`computed`中生成的`ReactiveEffect`实例收集到`targetMap[obj].a`、`targetMap[obj].b`中，一旦`a`或`b`属性变化了，会触发依赖，而在依赖的触发过程中会执行调度函数，在调度函数中会将脏数据的标识`_dirty`设置为`true`，并触发计算属性的依赖。那么在下一次使用到计算属性的话，由于`_dirty`为`true`，便会调用计算属性中的`effect.run`方法重新计算值。
 
 
 

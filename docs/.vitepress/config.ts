@@ -390,15 +390,19 @@ function getHTMLSidebar() {
         },
         {
           text: '分组和引用对象',
-          link: '/html/svg/group-and-quote.md'
+          link: '/html/svg/group-and-quote'
         },
         {
           text: '坐标系统的变换',
-          link: '/html/svg/transform.md'
+          link: '/html/svg/transform'
         },
         {
           text: '路径',
-          link: '/html/svg/path.md'
+          link: '/html/svg/path'
+        },
+        {
+          text: '图案和渐变',
+          link: '/html/svg/pattern-and-gradient'
         },
         {
           text: 'feTurbulence滤镜',

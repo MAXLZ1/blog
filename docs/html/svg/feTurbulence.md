@@ -1,7 +1,7 @@
 <script setup>
-import FeTurbulence from './FeTurbulence.vue';
-import FeTurbulenceStitchTiles from './FeTurbulenceStitchTiles.vue';
-import FeTurbulenceType from './FeTurbulenceType.vue';
+import FeTurbulence from './components/FeTurbulence.vue';
+import FeTurbulenceStitchTiles from './components/FeTurbulenceStitchTiles.vue';
+import FeTurbulenceType from './components/FeTurbulenceType.vue';
 </script>
 
 # feTurbulence
