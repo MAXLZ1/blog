@@ -123,10 +123,17 @@ function getVueSidebar() {
           text: '响应式API：工具函数',
           link: '/vue3-analysis/reactivity/utils'
         },
-        // { text: 'toRaw', link: '/vue3-analysis/reactive/toRaw' },
       ]
     },
-
+    // {
+    //   text: '渲染器',
+    //   items: [
+    //     {
+    //       text: '渲染器',
+    //       link: '/vue3-analysis/renderer/renderer'
+    //     }
+    //   ]
+    // }
     // {
     //   text: 'effect',
     //   items: [
@@ -403,6 +410,10 @@ function getHTMLSidebar() {
         {
           text: '图案和渐变',
           link: '/html/svg/pattern-and-gradient'
+        },
+        {
+          text: '文本',
+          link: '/html/svg/text'
         },
         {
           text: 'feTurbulence滤镜',
