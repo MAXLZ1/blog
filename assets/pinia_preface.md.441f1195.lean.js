@@ -1,0 +1,1 @@
+import{_ as e,o as a,c as t,d as r}from"./app.08f71b15.js";const m=JSON.parse('{"title":"\u524D\u8A00","description":"","frontmatter":{},"headers":[],"relativePath":"pinia/preface.md"}'),o={name:"pinia/preface.md"},c=r("",3),i=[c];function s(n,p,_,d,l,h){return a(),t("div",null,i)}var u=e(o,[["render",s]]);export{m as __pageData,u as default};

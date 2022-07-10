@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.08f71b15.js";const i=JSON.parse('{"title":"<router-link\\\\>","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/router-link.md"}'),p={name:"vue-router/router-link.md"},o=l("",4),e=[o];function t(c,r,y,F,D,C){return n(),a("div",null,e)}var u=s(p,[["render",t]]);export{i as __pageData,u as default};
