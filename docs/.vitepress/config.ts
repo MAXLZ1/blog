@@ -134,20 +134,6 @@ function getVueSidebar() {
     //     }
     //   ]
     // }
-    // {
-    //   text: 'effect',
-    //   items: [
-    //     { text: '依赖收集', link: '/vue3-analysis/effect/依赖收集' },
-    //     { text: '触发依赖', link: '/vue3-analysis/effect/触发依赖' },
-    //   ]
-    // },
-    // { text: 'scheduler', link: '/vue3-analysis/scheduler/scheduler' },
-    // {
-    //   text: 'watch',
-    //   items: [
-    //     { text: 'watch', link: '/vue3-analysis/watch/watch' },
-    //   ]
-    // },
   ]
 }
 
@@ -414,6 +400,10 @@ function getHTMLSidebar() {
         {
           text: '文本',
           link: '/html/svg/text'
+        },
+        {
+          text: '裁剪和蒙版',
+          link: '/html/svg/clipPath-and-mask'
         },
         {
           text: 'feTurbulence滤镜',
