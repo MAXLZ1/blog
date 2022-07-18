@@ -125,15 +125,15 @@ function getVueSidebar() {
         },
       ]
     },
-    // {
-    //   text: '渲染器',
-    //   items: [
-    //     {
-    //       text: '渲染器',
-    //       link: '/vue3-analysis/renderer/renderer'
-    //     }
-    //   ]
-    // }
+    {
+      text: '渲染器',
+      items: [
+        {
+          text: '初识渲染器',
+          link: '/vue3-analysis/renderer/renderer'
+        }
+      ]
+    }
   ]
 }
 
@@ -406,9 +406,13 @@ function getHTMLSidebar() {
           link: '/html/svg/clipPath-and-mask'
         },
         {
-          text: 'feTurbulence滤镜',
-          link: '/html/svg/feTurbulence'
+          text: '滤镜',
+          link: '/html/svg/filter'
         },
+        // {
+        //   text: 'feTurbulence滤镜',
+        //   link: '/html/svg/feTurbulence'
+        // },
         // {
         //   text: 'feDisplacementMap滤镜',
         //   link: '/html/svg/feDisplacementMap'
