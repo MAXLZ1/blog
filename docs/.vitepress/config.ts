@@ -131,7 +131,11 @@ function getVueSidebar() {
         {
           text: '初识渲染器',
           link: '/vue3-analysis/renderer/renderer'
-        }
+        },
+        {
+          text: '虚拟DOM',
+          link: '/vue3-analysis/renderer/vnode'
+        },
       ]
     }
   ]
