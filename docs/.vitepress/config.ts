@@ -136,6 +136,10 @@ function getVueSidebar() {
           text: '虚拟DOM',
           link: '/vue3-analysis/renderer/vnode'
         },
+        {
+          text: 'vnode中的shapeFlag和patchFlag',
+          link: '/vue3-analysis/renderer/shapeFlagAndPatchFlag'
+        },
       ]
     }
   ]
