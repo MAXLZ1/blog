@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.8437faff.js";const C=JSON.parse('{"title":"createWebHistory","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/createWebHistory.md"}'),p={name:"vue-router/createWebHistory.md"},o=l("",24),e=[o];function t(c,r,F,y,D,i){return n(),a("div",null,e)}var d=s(p,[["render",t]]);export{C as __pageData,d as default};
