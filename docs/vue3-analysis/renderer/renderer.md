@@ -320,11 +320,16 @@ export function createAppContext(): AppContext {
       warnHandler: undefined,
       compilerOptions: {}
     },
+    // 存储全局混入的mixin
     mixins: [],
+    // 保存全局注册的组件
     components: {},
+    // 保存注册的全局指令
     directives: {},
+    // 保存全局provide的值
     provides: Object.create(null),
     optionsCache: new WeakMap(),
+    // 缓存每个组件经过标准化的的props
     propsCache: new WeakMap(),
     emitsCache: new WeakMap()
   }
