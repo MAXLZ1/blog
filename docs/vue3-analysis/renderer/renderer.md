@@ -312,12 +312,15 @@ export function createAppContext(): AppContext {
   return {
     app: null as any,
     config: {
+      // 一个判断是否为原生标签的函数
       isNativeTag: NO,
       performance: false,
       globalProperties: {},
+      // 自定义options的合并策略
       optionMergeStrategies: {},
       errorHandler: undefined,
       warnHandler: undefined,
+      // 组件模板的运行时编译器选项
       compilerOptions: {}
     },
     // 存储全局混入的mixin
@@ -328,6 +331,7 @@ export function createAppContext(): AppContext {
     directives: {},
     // 保存全局provide的值
     provides: Object.create(null),
+    // 缓存组件被解析过的options（合并了全局mixins、extends、局部mixins）
     optionsCache: new WeakMap(),
     // 缓存每个组件经过标准化的的props
     propsCache: new WeakMap(),

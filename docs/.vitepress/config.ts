@@ -140,18 +140,26 @@ function getVueSidebar() {
           text: 'vnode中的shapeFlag和patchFlag',
           link: '/vue3-analysis/renderer/shapeFlagAndPatchFlag'
         },
-        {
-          text: '组件实例的创建',
-          link: '/vue3-analysis/renderer/componentInstance'
-        },
+        // {
+        //   text: '组件实例的创建过程',
+        //   link: '/vue3-analysis/renderer/componentInstance'
+        // },
         {
           text: '组件props的初始化过程',
           link: '/vue3-analysis/renderer/initProps'
         },
+        {
+          text: '详解组件中的this',
+          link: '/vue3-analysis/renderer/componentThis'
+        },
         // {
-        //   text: '应用的挂载',
-        //   link: '/vue3-analysis/renderer/appMount'
+        //   text: '插槽的初始化过程',
+        //   link: '/vue3-analysis/renderer/initSlots'
         // },
+        {
+          text: '应用的挂载',
+          link: '/vue3-analysis/renderer/appMount'
+        },
         // {
         //   text: '虚拟DOM的渲染',
         //   link: '/vue3-analysis/renderer/render'
