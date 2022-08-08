@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,d as l}from"./app.a44cee21.js";const C=JSON.parse('{"title":"isReady","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/isReady.md"}'),p={name:"vue-router/isReady.md"},o=l("",6),e=[o];function r(t,c,y,F,D,A){return a(),n("div",null,e)}var d=s(p,[["render",r]]);export{C as __pageData,d as default};
