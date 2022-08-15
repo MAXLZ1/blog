@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.6c5407ee.js";const A=JSON.parse('{"title":"storeToRefs","description":"","frontmatter":{},"headers":[],"relativePath":"pinia/storeToRefs.md"}'),o={name:"pinia/storeToRefs.md"},p=l("",3),e=[p];function t(c,r,F,y,D,i){return n(),a("div",null,e)}var f=s(o,[["render",t]]);export{A as __pageData,f as default};
