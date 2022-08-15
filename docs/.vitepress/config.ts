@@ -149,6 +149,10 @@ function getVueSidebar() {
           link: '/vue3-analysis/renderer/initProps'
         },
         {
+          text: 'vue3中options选项的合并策略',
+          link: '/vue3-analysis/renderer/optionsMergeStrategies'
+        },
+        {
           text: '详解组件中的this',
           link: '/vue3-analysis/renderer/componentThis'
         },
@@ -156,10 +160,10 @@ function getVueSidebar() {
         //   text: '插槽的初始化过程',
         //   link: '/vue3-analysis/renderer/initSlots'
         // },
-        {
-          text: '应用的挂载',
-          link: '/vue3-analysis/renderer/appMount'
-        },
+        // {
+        //   text: '应用的挂载',
+        //   link: '/vue3-analysis/renderer/appMount'
+        // },
         // {
         //   text: '虚拟DOM的渲染',
         //   link: '/vue3-analysis/renderer/render'
