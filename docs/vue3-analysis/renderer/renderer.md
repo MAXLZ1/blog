@@ -333,8 +333,9 @@ export function createAppContext(): AppContext {
     provides: Object.create(null),
     // 缓存组件被解析过的options（合并了全局mixins、extends、局部mixins）
     optionsCache: new WeakMap(),
-    // 缓存每个组件经过标准化的的props
+    // 缓存每个组件经过标准化的的props options
     propsCache: new WeakMap(),
+    // 缓存每个组件经过标准化的的emits options
     emitsCache: new WeakMap()
   }
 }
