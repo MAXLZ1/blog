@@ -96,7 +96,7 @@ export function normalizePropsOptions(
           prop[BooleanFlags.shouldCast] = booleanIndex > -1
           prop[BooleanFlags.shouldCastTrue] =
             stringIndex < 0 || booleanIndex < stringIndex
-          // 如果prop需要进行Boolean转换或存在默认值，则将key存入needCastKeys中
+          // 如果prop类型中存在Boolean或存在默认值，则将key存入needCastKeys中
           if (booleanIndex > -1 || hasOwn(prop, 'default')) {
             needCastKeys.push(normalizedKey)
           }
@@ -257,7 +257,7 @@ function setFullProps(
       let camelKey
       // 将key进行驼峰处理，因为props option在规范化期间也被转换为驼峰格式了
       if (options && hasOwn(options, (camelKey = camelize(key)))) {
-        // 如果声明props时，key没有设置默认值或key的类型中不存在Boolean，则可以直接赋值
+        // 如果声明props时，key没有设置默认值并且key的类型中不存在Boolean，则可以直接赋值
         if (!needCastKeys || !needCastKeys.includes(camelKey)) {
           props[camelKey] = value
         } else {
