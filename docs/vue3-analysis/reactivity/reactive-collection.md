@@ -423,7 +423,7 @@ iteratorMethods.forEach(method => {
 `keys`、`values`、`entries`、`Symbol.iterator`的重写函数均通过一个`createIterableMethod`函数生成。
 
 ::: details Symbol.iterator是什么？
-集合的`Symbol.iterator`函数可以用来获取迭代器对象，正是因为集合实现了`Symbol.iterator`方法，所以可以使用`for...of`进行迭代。而这里需要重写`Symbol.iterator`方法，目的是为了是现在使用`for...of`迭代代理对象。如下：
+集合的`Symbol.iterator`函数可以用来获取迭代器对象，正是因为集合实现了`Symbol.iterator`方法，所以可以使用`for...of`进行迭代。而这里需要重写`Symbol.iterator`方法，目的是为了实现使用`for...of`迭代代理对象。如下：
 
 ```ts
 const map = reactive(new Map([['a', 1], ['b', 2]]))

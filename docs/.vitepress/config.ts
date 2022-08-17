@@ -140,10 +140,6 @@ function getVueSidebar() {
           text: 'vnode中的shapeFlag和patchFlag',
           link: '/vue3-analysis/renderer/shapeFlagAndPatchFlag'
         },
-        // {
-        //   text: '组件实例的创建过程',
-        //   link: '/vue3-analysis/renderer/componentInstance'
-        // },
         {
           text: '组件props的初始化过程',
           link: '/vue3-analysis/renderer/initProps'
@@ -155,6 +151,10 @@ function getVueSidebar() {
         {
           text: '详解组件中的this',
           link: '/vue3-analysis/renderer/componentThis'
+        },
+        {
+          text: '组件实例的创建过程',
+          link: '/vue3-analysis/renderer/componentInstance'
         },
         // {
         //   text: '插槽的初始化过程',
