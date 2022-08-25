@@ -1679,7 +1679,7 @@ const mountStaticNode = (
 </template>
 ```
 
-![](../../images/static-vnode-playground.pngfragement-vnode-playground.png)
+![](../../images/fragement-vnode-playground.png)
 
 `Fragment`类型`vnode`的处理：
 ```ts
