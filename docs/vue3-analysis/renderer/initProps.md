@@ -264,10 +264,10 @@ function setFullProps(
           ;(rawCastValues || (rawCastValues = {}))[camelKey] = value
         }
       } else if (!isEmitListener(instance.emitsOptions, key)) {  // 将未声明的props被放入单独的attrs对象中
-        if (__COMPAT__) {
+        if (__COMPAT__) { // 兼容模式下
           if (isOn(key) && key.endsWith('Native')) {
             key = key.slice(0, -6) // remove Native postfix
-          } else if (shouldSkipAttr(key, instance)) {
+          } else if (shouldSkipAttr(key, instance)) { // 某些情况应该跳过向attrs中添加key。如兼容模式下开启了了INSTANCE_ATTRS_CLASS_STYLE，不会添加class和style
             continue
           }
         }

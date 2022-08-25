@@ -67,18 +67,21 @@ export interface VNode<
   transition: TransitionHooks<HostElement> | null
 
   // DOM
+  // vnode对应的DOM
   el: HostNode | null
   anchor: HostNode | null // fragment anchor
-  target: HostElement | null // teleport target
-  targetAnchor: HostNode | null // teleport target anchor
-  /**
-   * number of elements contained in a static vnode
-   * @internal
-   */
+  // teleport需要挂载的目标DOM
+  target: HostElement | null
+  // teleport挂载所需的锚点
+  targetAnchor: HostNode | null
+   
+  // 对于Static vnode所包含的静态节点数量
   staticCount: number
-  // suspense
+  // suspense组件的边界
   suspense: SuspenseBoundary | null
+  // suspense的default slot对应的vnode
   ssContent: VNode | null
+  // suspense的fallback slot对应的vnode
   ssFallback: VNode | null
 
   // 用于优化的标记，主要用于判断节点类型

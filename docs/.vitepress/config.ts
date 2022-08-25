@@ -160,16 +160,25 @@ function getVueSidebar() {
         //   text: '插槽的初始化过程',
         //   link: '/vue3-analysis/renderer/initSlots'
         // },
-        // {
-        //   text: '应用的挂载',
-        //   link: '/vue3-analysis/renderer/appMount'
-        // },
+        {
+          text: '应用的挂载',
+          link: '/vue3-analysis/renderer/appMount'
+        },
         // {
         //   text: '虚拟DOM的渲染',
         //   link: '/vue3-analysis/renderer/render'
         // },
       ]
-    }
+    },
+    // {
+    //   text: '其它',
+    //   items: [
+    //     {
+    //       text: 'emit的实现',
+    //       link: '/vue3-analysis/other/emit',
+    //     }
+    //   ]
+    // }
   ]
 }
 

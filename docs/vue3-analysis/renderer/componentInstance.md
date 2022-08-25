@@ -20,17 +20,11 @@ export interface ComponentInternalInstance {
    * @internal
    */
   next: VNode | null
-  /**
-   * Root vnode of this component's own vdom tree
-   */
+  // 组件本身的vdom树的根vnode
   subTree: VNode
-  /**
-   * Render effect instance
-   */
+  // 使用组件更新函数构建的ReactiveEffect对象
   effect: ReactiveEffect
-  /**
-   * Bound effect runner to be passed to schedulers
-   */
+  // 更新函数，一个包含effect.run()的函数
   update: SchedulerJob
   // 返回vdom树的渲染函数
   render: InternalRenderFunction | null
@@ -123,19 +117,14 @@ export interface ComponentInternalInstance {
   // setup上下文
   setupContext: SetupContext | null
 
-  /**
-   * suspense related
-   * @internal
-   */
+  // suspense边界
   suspense: SuspenseBoundary | null
   /**
    * suspense pending batch id
    * @internal
    */
   suspenseId: number
-  /**
-   * @internal
-   */
+  // setup的返回值（Promise）
   asyncDep: Promise<any> | null
   /**
    * @internal
