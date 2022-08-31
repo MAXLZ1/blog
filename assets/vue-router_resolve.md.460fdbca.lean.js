@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.c4bbe33e.js";const i=JSON.parse('{"title":"resolve","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/resolve.md"}'),o={name:"vue-router/resolve.md"},p=l("",23),e=[p];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};
