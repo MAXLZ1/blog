@@ -15,10 +15,7 @@ export interface ComponentInternalInstance {
   appContext: AppContext
   // 对应的vnode
   vnode: VNode
-  /**
-   * The pending new vnode from parent updates
-   * @internal
-   */
+  // 来自父组件更新的待处理的新vnode
   next: VNode | null
   // 组件本身的vdom树的根vnode
   subTree: VNode

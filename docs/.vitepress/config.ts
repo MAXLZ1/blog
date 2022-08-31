@@ -164,6 +164,14 @@ function getVueSidebar() {
           text: '应用的挂载',
           link: '/vue3-analysis/renderer/appMount'
         },
+        {
+          text: 'vue3 Diff算法',
+          link: '/vue3-analysis/renderer/diff'
+        },
+        // {
+        //   text: '组件的更新',
+        //   link: '/vue3-analysis/renderer/componentUpdate'
+        // },
         // {
         //   text: '虚拟DOM的渲染',
         //   link: '/vue3-analysis/renderer/render'
