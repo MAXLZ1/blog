@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.7292240d.js";const p="/blog/assets/go.70f212bf.png",d=JSON.parse('{"title":"go","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/go.md"}'),o={name:"vue-router/go.md"},e=l("",15),t=[e];function c(r,F,y,D,A,i){return n(),a("div",null,t)}const f=s(o,[["render",c]]);export{d as __pageData,f as default};
