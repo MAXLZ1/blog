@@ -137,6 +137,10 @@ function getVueSidebar() {
           link: '/vue3-analysis/renderer/vnode'
         },
         {
+          text: 'Block',
+          link: '/vue3-analysis/renderer/block'
+        },
+        {
           text: 'vnode中的shapeFlag和patchFlag',
           link: '/vue3-analysis/renderer/shapeFlagAndPatchFlag'
         },
@@ -164,14 +168,14 @@ function getVueSidebar() {
           text: '应用的挂载',
           link: '/vue3-analysis/renderer/appMount'
         },
-        {
-          text: 'vue3 Diff算法',
-          link: '/vue3-analysis/renderer/diff'
-        },
         // {
         //   text: '组件的更新',
         //   link: '/vue3-analysis/renderer/componentUpdate'
         // },
+        {
+          text: 'vue3 Diff算法',
+          link: '/vue3-analysis/renderer/diff'
+        },
         // {
         //   text: '虚拟DOM的渲染',
         //   link: '/vue3-analysis/renderer/render'
