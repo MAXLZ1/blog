@@ -168,10 +168,10 @@ function getVueSidebar() {
           text: '应用的挂载',
           link: '/vue3-analysis/renderer/appMount'
         },
-        // {
-        //   text: '组件的更新',
-        //   link: '/vue3-analysis/renderer/componentUpdate'
-        // },
+        {
+          text: '组件的更新',
+          link: '/vue3-analysis/renderer/componentUpdate'
+        },
         {
           text: 'vue3 Diff算法',
           link: '/vue3-analysis/renderer/diff'
