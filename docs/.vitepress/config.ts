@@ -182,15 +182,15 @@ function getVueSidebar() {
         // },
       ]
     },
-    // {
-    //   text: '其它',
-    //   items: [
-    //     {
-    //       text: 'emit的实现',
-    //       link: '/vue3-analysis/other/emit',
-    //     }
-    //   ]
-    // }
+    {
+      text: '其它',
+      items: [
+        {
+          text: 'emit的实现',
+          link: '/vue3-analysis/other/emit',
+        }
+      ]
+    }
   ]
 }
 

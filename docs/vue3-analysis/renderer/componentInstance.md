@@ -97,10 +97,7 @@ export interface ComponentInternalInstance {
   refs: Data
   // emit函数
   emit: EmitFn
-  /**
-   * used for keeping track of .once event handlers on components
-   * @internal
-   */
+  // 被.once修饰的事件，被调用过一次，会将其事件名保存在emitted，防止之后被调用
   emitted: Record<string, boolean> | null
   // 缓存props的默认值
   propsDefaults: Data
