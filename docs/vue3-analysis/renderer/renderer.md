@@ -38,26 +38,11 @@ export function createRenderer<
 }
 ```
 
-至此，我们就找到了真正创建渲染器的方法`baseCreateRenderer`。当我们找到`baseCreateRenderer`的具体实现，你会发现这个函数是十分长的，单`baseCreateRenderer`这一个函数就占据了2044行代码。
+至此，我们就找到了真正创建渲染器的方法`baseCreateRenderer`。当我们找到`baseCreateRenderer`的具体实现，你会发现这个函数是十分长的，单`baseCreateRenderer`这一个函数就占据了2044行代码，其中更是声明了30+个函数。
 
+在此我们先不用关心这些函数的作用，在后续介绍组件加载及更新过程时，你会慢慢了解这些函数。
 
-我们搞清楚`baseCreateRenderer`是用来创建渲染器的，那么我们先找这个渲染器是什么。我们可以先看关于`baseCreateRenderer`函数的类型定义：
-
-```ts
-// overload 1: no hydration
-function baseCreateRenderer<
-  HostNode = RendererNode,
-  HostElement = RendererElement
->(options: RendererOptions<HostNode, HostElement>): Renderer<HostElement>
-
-// overload 2: with hydration
-function baseCreateRenderer(
-  options: RendererOptions<Node, Element>,
-  createHydrationFns: typeof createHydrationFunctions
-): HydrationRenderer
-```
-
-从`baseCreateRenderer`函数类型声明中我们发现这个函数可以接受两个参数：`options`、`createHydrationFns`。并返回一个`Renderer`（或`HydrationRenderer`）类型的数据。从函数返回值类型定义来看，函数应该返回的是个渲染器。接下来我们看函数的返回值具体是什么。
+接下来我们继续看渲染器对象的结构。
 
 ## 渲染器
 
@@ -620,5 +605,8 @@ provide(key, value) {
 ```
 
 ## 总结
-`vue3`中的渲染器主要作用就是将虚拟DOM转为真实DOM渲染到对应平台中，在这个渲染过程中会包括DOM的挂载、DOM的更新等操作。通过`baseCreateRenderer`方法创建一个渲染器`renderer`，`renderer`中有三个方法：`render`、`hydrate`、`createApp`（这里的`createApp`不是我们日常开发中使用到的`createApp`，这个`createApp`方法会在我们日常开发中使用到的`createApp`中被调用）。
+
+`vue3`中的渲染器主要作用就是将虚拟DOM转为真实DOM渲染到对应平台中，在这个渲染过程中会包括DOM的挂载、DOM的更新等操作。
+
+通过`baseCreateRenderer`方法会创建一个渲染器`renderer`，`renderer`中有三个方法：`render`、`hydrate`、`createApp`，其中`render`方法用来进行客户端渲染，`hydrate`用来进行同构渲染，`createApp`用来创建`app`实例。`baseCreateRenderer`中包含了大量的函数用来处理挂载组件、更新组件等操作。
 
