@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,d as l}from"./app.a6a8e668.js";const i=JSON.parse('{"title":"createRouter","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/createRouter.md"}'),o={name:"vue-router/createRouter.md"},p=l("",19),e=[p];function t(c,r,y,F,D,C){return n(),a("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};
