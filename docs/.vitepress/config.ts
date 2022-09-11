@@ -160,10 +160,6 @@ function getVueSidebar() {
           text: '组件实例的创建过程',
           link: '/vue3-analysis/renderer/componentInstance'
         },
-        // {
-        //   text: '插槽的初始化过程',
-        //   link: '/vue3-analysis/renderer/initSlots'
-        // },
         {
           text: '应用的挂载',
           link: '/vue3-analysis/renderer/appMount'
@@ -176,10 +172,15 @@ function getVueSidebar() {
           text: 'vue3 Diff算法',
           link: '/vue3-analysis/renderer/diff'
         },
-        // {
-        //   text: '虚拟DOM的渲染',
-        //   link: '/vue3-analysis/renderer/render'
-        // },
+      ]
+    },
+    {
+      text: '编译器',
+      items: [
+        {
+          text: '初始编译器',
+          link: '/vue3-analysis/compiler/compiler',
+        }
       ]
     },
     {
