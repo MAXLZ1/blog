@@ -190,12 +190,12 @@ function _createVNode(
     type = type.__vccOpts
   }
 
-  //  2.x的function组件type
+  //  兼容2.x的异步及函数式组件
   if (__COMPAT__) {
     type = convertLegacyComponent(type, currentRenderingInstance)
   }
 
-  // class、style的规范化
+  // class、style的标准化
   if (props) {
     props = guardReactiveProps(props)!
     let { class: klass, style } = props
@@ -210,7 +210,7 @@ function _createVNode(
     }
   }
 
-  // 将vnode类型信息编码为位图
+  // 根据type属性确定patchFlag
   const shapeFlag = isString(type)
     ? ShapeFlags.ELEMENT
     : __FEATURE_SUSPENSE__ && isSuspense(type)
@@ -411,6 +411,7 @@ export function mergeProps(...args: (Data & VNodeProps)[]) {
 ```
 
 关于`normalizeClass`、`normalizeStyle`的实现：
+
 ```ts
 export function normalizeClass(value: unknown): string {
   let res = ''
@@ -473,6 +474,7 @@ export function parseStringStyle(cssText: string): NormalizedStyle {
 ```
 
 回到`_createVNode`中，当复制出一个新的`vnode`后，调用了一个`normalizeChildren`方法，该方法的作用是对新复制的`vnode`，修改其`children`属性及完善`shapeFlag`属性
+
 ```ts
 export function normalizeChildren(vnode: VNode, children: unknown) {
   let type = 0
@@ -484,13 +486,14 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
     // 如果过children数数组，type改为ShapeFlags.ARRAY_CHILDREN
     type = ShapeFlags.ARRAY_CHILDREN
   } else if (typeof children === 'object') { // 如果children是对象
-    // 如果过vndoe是element或teleport
+    // 如果vndoe是element或teleport
     if (shapeFlag & (ShapeFlags.ELEMENT | ShapeFlags.TELEPORT)) {
       // 取默认插槽
       const slot = (children as any).default
       if (slot) {
-        // _c marker is added by withCtx() indicating this is a compiled slot
+        // _c 标记由 withCtx() 添加，表示这是一个已编译的插槽
         slot._c && (slot._d = false)
+        // 将默认插槽的结果作为vnode的children
         normalizeChildren(vnode, slot())
         slot._c && (slot._d = true)
       }
@@ -499,12 +502,11 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
       type = ShapeFlags.SLOTS_CHILDREN
       const slotFlag = (children as RawSlots)._
       if (!slotFlag && !(InternalObjectKey in children!)) {
-        // if slots are not normalized, attach context instance
-        // (compiled / normalized slots already have context)
+         // 如果槽未规范化，则附加上下文实例（编译过或标准话的slots已经有上下文）
         ;(children as RawSlots)._ctx = currentRenderingInstance
       } else if (slotFlag === SlotFlags.FORWARDED && currentRenderingInstance) {
-        // a child component receives forwarded slots from the parent.
-        // its slot type is determined by its parent's slot type.
+        // 子组件接收来自父组件的转发slots。
+        // 它的插槽类型由其父插槽类型决定。
         if (
           (currentRenderingInstance.slots as RawSlots)._ === SlotFlags.STABLE
         ) {
@@ -533,7 +535,7 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
 }
 ```
 
-然后判断如果`isBlockTreeEnabled>0`(允许`Block`被收集)，且`isBlockNode`为`false`，且`currentBlock`不为空，则会将`cloned`存入`currentBlock`中
+然后判断`vnode`是否应该被收集到`Block`中，并返回拷贝的节点。
 
 如果`type`不是`vnode`，在方法最后会调用一个`createBaseVNode`创建`vnode`
 
@@ -602,10 +604,9 @@ function createBaseVNode(
     !isBlockNode &&
     // 存在父block
     currentBlock &&
-    // presence of a patch flag indicates this node needs patching on updates.
-    // component nodes also should always be patched, because even if the
-    // component doesn't need to update, it needs to persist the instance on to
-    // the next vnode so that it can be properly unmounted later.
+    // vnode.patchFlag需要大于0或shapeFlag中存在ShapeFlags.COMPONENT
+    // patchFlag的存在表明该节点需要修补更新。
+    // 组件节点也应该总是打补丁，因为即使组件不需要更新，它也需要将实例持久化到下一个 vnode，以便以后可以正确卸载它
     (vnode.patchFlag > 0 || shapeFlag & ShapeFlags.COMPONENT) &&
     // the EVENTS flag is only for hydration and if it is the only flag, the
     // vnode should not be considered dynamic due to handler caching.
@@ -622,3 +623,22 @@ function createBaseVNode(
   return vnode
 }
 ```
+
+## 总结
+
+虚拟`DOM`的创建流程：
+
+1. 如果`type`是个空的动态组件，将`vnode.type`指定为`Comment`注释节点。
+2. 如果`type`已经是个`vnode`，则拷贝一个新的`vnode`返回。
+3. 处理`class component`
+4. 兼容`vue2`的异步组件及函数式组件
+5. `class`及`style`的标准化
+6. 根据`type`属性初步确定`patchFlag`
+7. 调用`createBaseVNode`方法创建`vnode`并返回
+
+`createBaseVNode`：
+1. 先创建一个`vnode`对象
+2. 完善`children`及`patchFlag`属性
+3. 判断是否应该被父`Block`收集
+4. 处理兼容`vue2`
+5. 返回`vnode`

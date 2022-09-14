@@ -144,6 +144,8 @@ if (
   // 存在parent block
   currentBlock &&
   // vnode.patchFlag需要大于0或shapeFlag中存在ShapeFlags.COMPONENT
+  // patchFlag的存在表明该节点需要修补更新。
+  // 组件节点也应该总是打补丁，因为即使组件不需要更新，它也需要将实例持久化到下一个 vnode，以便以后可以正确卸载它
   (vnode.patchFlag > 0 || shapeFlag & ShapeFlags.COMPONENT) &&
   vnode.patchFlag !== PatchFlags.HYDRATE_EVENTS
 ) {
