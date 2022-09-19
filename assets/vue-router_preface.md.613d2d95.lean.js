@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r,d as o}from"./app.1e11de60.js";const f=JSON.parse('{"title":"\u524D\u8A00","description":"","frontmatter":{},"headers":[],"relativePath":"vue-router/preface.md"}'),a={name:"vue-router/preface.md"},c=o("",3),s=[c];function _(d,n,p,u,i,l){return t(),r("div",null,s)}const v=e(a,[["render",_]]);export{f as __pageData,v as default};
