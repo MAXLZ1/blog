@@ -178,9 +178,13 @@ function getVueSidebar() {
       text: '编译器',
       items: [
         {
-          text: '初始编译器',
+          text: '初识编译器',
           link: '/vue3-analysis/compiler/compiler',
-        }
+        },
+        {
+          text: '模板的解析',
+          link: '/vue3-analysis/compiler/parse',
+        },
       ]
     },
     {
